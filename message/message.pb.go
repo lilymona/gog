@@ -22,32 +22,30 @@
 */
 package message
 
-import proto "code.google.com/p/gogoprotobuf/proto"
-import math "math"
-
-// discarding unused import gogoproto "code.google.com/p/gogoprotobuf/gogoproto/gogo.pb"
-
-import io "io"
+import proto "github.com/gogo/protobuf/proto"
 import fmt "fmt"
-import code_google_com_p_gogoprotobuf_proto "code.google.com/p/gogoprotobuf/proto"
+import math "math"
+import _ "github.com/gogo/protobuf/gogoproto"
 
-import fmt1 "fmt"
+import bytes "bytes"
+
 import strings "strings"
 import reflect "reflect"
 
-import fmt2 "fmt"
-import strings1 "strings"
-import code_google_com_p_gogoprotobuf_proto1 "code.google.com/p/gogoprotobuf/proto"
-import sort "sort"
-import strconv "strconv"
-import reflect1 "reflect"
+import github_com_gogo_protobuf_proto "github.com/gogo/protobuf/proto"
 
-import fmt3 "fmt"
-import bytes "bytes"
+import io "io"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
+var _ = fmt.Errorf
 var _ = math.Inf
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.GoGoProtoPackageIsVersion2 // please upgrade the proto package
 
 type Neighbor_Priority int32
 
@@ -81,6 +79,7 @@ func (x *Neighbor_Priority) UnmarshalJSON(data []byte) error {
 	*x = Neighbor_Priority(value)
 	return nil
 }
+func (Neighbor_Priority) EnumDescriptor() ([]byte, []int) { return fileDescriptorMessage, []int{3, 0} }
 
 // User defined messages.
 type UserMessage struct {
@@ -90,8 +89,9 @@ type UserMessage struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *UserMessage) Reset()      { *m = UserMessage{} }
-func (*UserMessage) ProtoMessage() {}
+func (m *UserMessage) Reset()                    { *m = UserMessage{} }
+func (*UserMessage) ProtoMessage()               {}
+func (*UserMessage) Descriptor() ([]byte, []int) { return fileDescriptorMessage, []int{0} }
 
 func (m *UserMessage) GetId() uint64 {
 	if m != nil && m.Id != nil {
@@ -121,8 +121,9 @@ type Join struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *Join) Reset()      { *m = Join{} }
-func (*Join) ProtoMessage() {}
+func (m *Join) Reset()                    { *m = Join{} }
+func (*Join) ProtoMessage()               {}
+func (*Join) Descriptor() ([]byte, []int) { return fileDescriptorMessage, []int{1} }
 
 func (m *Join) GetId() uint64 {
 	if m != nil && m.Id != nil {
@@ -145,8 +146,9 @@ type JoinReply struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *JoinReply) Reset()      { *m = JoinReply{} }
-func (*JoinReply) ProtoMessage() {}
+func (m *JoinReply) Reset()                    { *m = JoinReply{} }
+func (*JoinReply) ProtoMessage()               {}
+func (*JoinReply) Descriptor() ([]byte, []int) { return fileDescriptorMessage, []int{2} }
 
 func (m *JoinReply) GetId() uint64 {
 	if m != nil && m.Id != nil {
@@ -170,8 +172,9 @@ type Neighbor struct {
 	XXX_unrecognized []byte             `json:"-"`
 }
 
-func (m *Neighbor) Reset()      { *m = Neighbor{} }
-func (*Neighbor) ProtoMessage() {}
+func (m *Neighbor) Reset()                    { *m = Neighbor{} }
+func (*Neighbor) ProtoMessage()               {}
+func (*Neighbor) Descriptor() ([]byte, []int) { return fileDescriptorMessage, []int{3} }
 
 func (m *Neighbor) GetId() uint64 {
 	if m != nil && m.Id != nil {
@@ -201,8 +204,9 @@ type NeighborReply struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *NeighborReply) Reset()      { *m = NeighborReply{} }
-func (*NeighborReply) ProtoMessage() {}
+func (m *NeighborReply) Reset()                    { *m = NeighborReply{} }
+func (*NeighborReply) ProtoMessage()               {}
+func (*NeighborReply) Descriptor() ([]byte, []int) { return fileDescriptorMessage, []int{4} }
 
 func (m *NeighborReply) GetId() uint64 {
 	if m != nil && m.Id != nil {
@@ -227,8 +231,9 @@ type ForwardJoin struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *ForwardJoin) Reset()      { *m = ForwardJoin{} }
-func (*ForwardJoin) ProtoMessage() {}
+func (m *ForwardJoin) Reset()                    { *m = ForwardJoin{} }
+func (*ForwardJoin) ProtoMessage()               {}
+func (*ForwardJoin) Descriptor() ([]byte, []int) { return fileDescriptorMessage, []int{5} }
 
 func (m *ForwardJoin) GetId() uint64 {
 	if m != nil && m.Id != nil {
@@ -264,8 +269,9 @@ type Disconnect struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *Disconnect) Reset()      { *m = Disconnect{} }
-func (*Disconnect) ProtoMessage() {}
+func (m *Disconnect) Reset()                    { *m = Disconnect{} }
+func (*Disconnect) ProtoMessage()               {}
+func (*Disconnect) Descriptor() ([]byte, []int) { return fileDescriptorMessage, []int{6} }
 
 func (m *Disconnect) GetId() uint64 {
 	if m != nil && m.Id != nil {
@@ -281,8 +287,9 @@ type Candidate struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *Candidate) Reset()      { *m = Candidate{} }
-func (*Candidate) ProtoMessage() {}
+func (m *Candidate) Reset()                    { *m = Candidate{} }
+func (*Candidate) ProtoMessage()               {}
+func (*Candidate) Descriptor() ([]byte, []int) { return fileDescriptorMessage, []int{7} }
 
 func (m *Candidate) GetId() uint64 {
 	if m != nil && m.Id != nil {
@@ -308,8 +315,9 @@ type Shuffle struct {
 	XXX_unrecognized []byte       `json:"-"`
 }
 
-func (m *Shuffle) Reset()      { *m = Shuffle{} }
-func (*Shuffle) ProtoMessage() {}
+func (m *Shuffle) Reset()                    { *m = Shuffle{} }
+func (*Shuffle) ProtoMessage()               {}
+func (*Shuffle) Descriptor() ([]byte, []int) { return fileDescriptorMessage, []int{8} }
 
 func (m *Shuffle) GetId() uint64 {
 	if m != nil && m.Id != nil {
@@ -353,8 +361,9 @@ type ShuffleReply struct {
 	XXX_unrecognized []byte       `json:"-"`
 }
 
-func (m *ShuffleReply) Reset()      { *m = ShuffleReply{} }
-func (*ShuffleReply) ProtoMessage() {}
+func (m *ShuffleReply) Reset()                    { *m = ShuffleReply{} }
+func (*ShuffleReply) ProtoMessage()               {}
+func (*ShuffleReply) Descriptor() ([]byte, []int) { return fileDescriptorMessage, []int{9} }
 
 func (m *ShuffleReply) GetId() uint64 {
 	if m != nil && m.Id != nil {
@@ -371,1982 +380,66 @@ func (m *ShuffleReply) GetCandidates() []*Candidate {
 }
 
 func init() {
+	proto.RegisterType((*UserMessage)(nil), "message.UserMessage")
+	proto.RegisterType((*Join)(nil), "message.Join")
+	proto.RegisterType((*JoinReply)(nil), "message.JoinReply")
+	proto.RegisterType((*Neighbor)(nil), "message.Neighbor")
+	proto.RegisterType((*NeighborReply)(nil), "message.NeighborReply")
+	proto.RegisterType((*ForwardJoin)(nil), "message.ForwardJoin")
+	proto.RegisterType((*Disconnect)(nil), "message.Disconnect")
+	proto.RegisterType((*Candidate)(nil), "message.Candidate")
+	proto.RegisterType((*Shuffle)(nil), "message.Shuffle")
+	proto.RegisterType((*ShuffleReply)(nil), "message.ShuffleReply")
 	proto.RegisterEnum("message.Neighbor_Priority", Neighbor_Priority_name, Neighbor_Priority_value)
-}
-func (m *UserMessage) Unmarshal(data []byte) error {
-	l := len(data)
-	index := 0
-	for index < l {
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if index >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := data[index]
-			index++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			var v uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Id = &v
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Payload", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				byteLen |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			postIndex := index + byteLen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Payload = append(m.Payload, data[index:postIndex]...)
-			index = postIndex
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Ts", wireType)
-			}
-			var v int64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (int64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Ts = &v
-		default:
-			var sizeOfWire int
-			for {
-				sizeOfWire++
-				wire >>= 7
-				if wire == 0 {
-					break
-				}
-			}
-			index -= sizeOfWire
-			skippy, err := code_google_com_p_gogoprotobuf_proto.Skip(data[index:])
-			if err != nil {
-				return err
-			}
-			if (index + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, data[index:index+skippy]...)
-			index += skippy
-		}
-	}
-	return nil
-}
-func (m *Join) Unmarshal(data []byte) error {
-	l := len(data)
-	index := 0
-	for index < l {
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if index >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := data[index]
-			index++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			var v uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Id = &v
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Addr", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				stringLen |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			postIndex := index + int(stringLen)
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			s := string(data[index:postIndex])
-			m.Addr = &s
-			index = postIndex
-		default:
-			var sizeOfWire int
-			for {
-				sizeOfWire++
-				wire >>= 7
-				if wire == 0 {
-					break
-				}
-			}
-			index -= sizeOfWire
-			skippy, err := code_google_com_p_gogoprotobuf_proto.Skip(data[index:])
-			if err != nil {
-				return err
-			}
-			if (index + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, data[index:index+skippy]...)
-			index += skippy
-		}
-	}
-	return nil
-}
-func (m *JoinReply) Unmarshal(data []byte) error {
-	l := len(data)
-	index := 0
-	for index < l {
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if index >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := data[index]
-			index++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			var v uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Id = &v
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Accept", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			b := bool(v != 0)
-			m.Accept = &b
-		default:
-			var sizeOfWire int
-			for {
-				sizeOfWire++
-				wire >>= 7
-				if wire == 0 {
-					break
-				}
-			}
-			index -= sizeOfWire
-			skippy, err := code_google_com_p_gogoprotobuf_proto.Skip(data[index:])
-			if err != nil {
-				return err
-			}
-			if (index + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, data[index:index+skippy]...)
-			index += skippy
-		}
-	}
-	return nil
-}
-func (m *Neighbor) Unmarshal(data []byte) error {
-	l := len(data)
-	index := 0
-	for index < l {
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if index >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := data[index]
-			index++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			var v uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Id = &v
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Addr", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				stringLen |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			postIndex := index + int(stringLen)
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			s := string(data[index:postIndex])
-			m.Addr = &s
-			index = postIndex
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Priority", wireType)
-			}
-			var v Neighbor_Priority
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (Neighbor_Priority(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Priority = &v
-		default:
-			var sizeOfWire int
-			for {
-				sizeOfWire++
-				wire >>= 7
-				if wire == 0 {
-					break
-				}
-			}
-			index -= sizeOfWire
-			skippy, err := code_google_com_p_gogoprotobuf_proto.Skip(data[index:])
-			if err != nil {
-				return err
-			}
-			if (index + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, data[index:index+skippy]...)
-			index += skippy
-		}
-	}
-	return nil
-}
-func (m *NeighborReply) Unmarshal(data []byte) error {
-	l := len(data)
-	index := 0
-	for index < l {
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if index >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := data[index]
-			index++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			var v uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Id = &v
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Accept", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			b := bool(v != 0)
-			m.Accept = &b
-		default:
-			var sizeOfWire int
-			for {
-				sizeOfWire++
-				wire >>= 7
-				if wire == 0 {
-					break
-				}
-			}
-			index -= sizeOfWire
-			skippy, err := code_google_com_p_gogoprotobuf_proto.Skip(data[index:])
-			if err != nil {
-				return err
-			}
-			if (index + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, data[index:index+skippy]...)
-			index += skippy
-		}
-	}
-	return nil
-}
-func (m *ForwardJoin) Unmarshal(data []byte) error {
-	l := len(data)
-	index := 0
-	for index < l {
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if index >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := data[index]
-			index++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			var v uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Id = &v
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SourceId", wireType)
-			}
-			var v uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.SourceId = &v
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SourceAddr", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				stringLen |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			postIndex := index + int(stringLen)
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			s := string(data[index:postIndex])
-			m.SourceAddr = &s
-			index = postIndex
-		case 4:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Ttl", wireType)
-			}
-			var v uint32
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint32(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Ttl = &v
-		default:
-			var sizeOfWire int
-			for {
-				sizeOfWire++
-				wire >>= 7
-				if wire == 0 {
-					break
-				}
-			}
-			index -= sizeOfWire
-			skippy, err := code_google_com_p_gogoprotobuf_proto.Skip(data[index:])
-			if err != nil {
-				return err
-			}
-			if (index + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, data[index:index+skippy]...)
-			index += skippy
-		}
-	}
-	return nil
-}
-func (m *Disconnect) Unmarshal(data []byte) error {
-	l := len(data)
-	index := 0
-	for index < l {
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if index >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := data[index]
-			index++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			var v uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Id = &v
-		default:
-			var sizeOfWire int
-			for {
-				sizeOfWire++
-				wire >>= 7
-				if wire == 0 {
-					break
-				}
-			}
-			index -= sizeOfWire
-			skippy, err := code_google_com_p_gogoprotobuf_proto.Skip(data[index:])
-			if err != nil {
-				return err
-			}
-			if (index + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, data[index:index+skippy]...)
-			index += skippy
-		}
-	}
-	return nil
-}
-func (m *Candidate) Unmarshal(data []byte) error {
-	l := len(data)
-	index := 0
-	for index < l {
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if index >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := data[index]
-			index++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			var v uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Id = &v
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Addr", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				stringLen |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			postIndex := index + int(stringLen)
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			s := string(data[index:postIndex])
-			m.Addr = &s
-			index = postIndex
-		default:
-			var sizeOfWire int
-			for {
-				sizeOfWire++
-				wire >>= 7
-				if wire == 0 {
-					break
-				}
-			}
-			index -= sizeOfWire
-			skippy, err := code_google_com_p_gogoprotobuf_proto.Skip(data[index:])
-			if err != nil {
-				return err
-			}
-			if (index + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, data[index:index+skippy]...)
-			index += skippy
-		}
-	}
-	return nil
-}
-func (m *Shuffle) Unmarshal(data []byte) error {
-	l := len(data)
-	index := 0
-	for index < l {
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if index >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := data[index]
-			index++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			var v uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Id = &v
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SourceId", wireType)
-			}
-			var v uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.SourceId = &v
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Addr", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				stringLen |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			postIndex := index + int(stringLen)
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			s := string(data[index:postIndex])
-			m.Addr = &s
-			index = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Candidates", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				msglen |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			postIndex := index + msglen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Candidates = append(m.Candidates, &Candidate{})
-			m.Candidates[len(m.Candidates)-1].Unmarshal(data[index:postIndex])
-			index = postIndex
-		case 5:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Ttl", wireType)
-			}
-			var v uint32
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint32(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Ttl = &v
-		default:
-			var sizeOfWire int
-			for {
-				sizeOfWire++
-				wire >>= 7
-				if wire == 0 {
-					break
-				}
-			}
-			index -= sizeOfWire
-			skippy, err := code_google_com_p_gogoprotobuf_proto.Skip(data[index:])
-			if err != nil {
-				return err
-			}
-			if (index + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, data[index:index+skippy]...)
-			index += skippy
-		}
-	}
-	return nil
-}
-func (m *ShuffleReply) Unmarshal(data []byte) error {
-	l := len(data)
-	index := 0
-	for index < l {
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if index >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := data[index]
-			index++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			var v uint64
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				v |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Id = &v
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Candidates", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if index >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[index]
-				index++
-				msglen |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			postIndex := index + msglen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Candidates = append(m.Candidates, &Candidate{})
-			m.Candidates[len(m.Candidates)-1].Unmarshal(data[index:postIndex])
-			index = postIndex
-		default:
-			var sizeOfWire int
-			for {
-				sizeOfWire++
-				wire >>= 7
-				if wire == 0 {
-					break
-				}
-			}
-			index -= sizeOfWire
-			skippy, err := code_google_com_p_gogoprotobuf_proto.Skip(data[index:])
-			if err != nil {
-				return err
-			}
-			if (index + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, data[index:index+skippy]...)
-			index += skippy
-		}
-	}
-	return nil
-}
-func (this *UserMessage) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&UserMessage{`,
-		`Id:` + valueToStringMessage(this.Id) + `,`,
-		`Payload:` + valueToStringMessage(this.Payload) + `,`,
-		`Ts:` + valueToStringMessage(this.Ts) + `,`,
-		`XXX_unrecognized:` + fmt1.Sprintf("%v", this.XXX_unrecognized) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Join) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Join{`,
-		`Id:` + valueToStringMessage(this.Id) + `,`,
-		`Addr:` + valueToStringMessage(this.Addr) + `,`,
-		`XXX_unrecognized:` + fmt1.Sprintf("%v", this.XXX_unrecognized) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *JoinReply) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&JoinReply{`,
-		`Id:` + valueToStringMessage(this.Id) + `,`,
-		`Accept:` + valueToStringMessage(this.Accept) + `,`,
-		`XXX_unrecognized:` + fmt1.Sprintf("%v", this.XXX_unrecognized) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Neighbor) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Neighbor{`,
-		`Id:` + valueToStringMessage(this.Id) + `,`,
-		`Addr:` + valueToStringMessage(this.Addr) + `,`,
-		`Priority:` + valueToStringMessage(this.Priority) + `,`,
-		`XXX_unrecognized:` + fmt1.Sprintf("%v", this.XXX_unrecognized) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *NeighborReply) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&NeighborReply{`,
-		`Id:` + valueToStringMessage(this.Id) + `,`,
-		`Accept:` + valueToStringMessage(this.Accept) + `,`,
-		`XXX_unrecognized:` + fmt1.Sprintf("%v", this.XXX_unrecognized) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *ForwardJoin) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&ForwardJoin{`,
-		`Id:` + valueToStringMessage(this.Id) + `,`,
-		`SourceId:` + valueToStringMessage(this.SourceId) + `,`,
-		`SourceAddr:` + valueToStringMessage(this.SourceAddr) + `,`,
-		`Ttl:` + valueToStringMessage(this.Ttl) + `,`,
-		`XXX_unrecognized:` + fmt1.Sprintf("%v", this.XXX_unrecognized) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Disconnect) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Disconnect{`,
-		`Id:` + valueToStringMessage(this.Id) + `,`,
-		`XXX_unrecognized:` + fmt1.Sprintf("%v", this.XXX_unrecognized) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Candidate) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Candidate{`,
-		`Id:` + valueToStringMessage(this.Id) + `,`,
-		`Addr:` + valueToStringMessage(this.Addr) + `,`,
-		`XXX_unrecognized:` + fmt1.Sprintf("%v", this.XXX_unrecognized) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Shuffle) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Shuffle{`,
-		`Id:` + valueToStringMessage(this.Id) + `,`,
-		`SourceId:` + valueToStringMessage(this.SourceId) + `,`,
-		`Addr:` + valueToStringMessage(this.Addr) + `,`,
-		`Candidates:` + strings.Replace(fmt1.Sprintf("%v", this.Candidates), "Candidate", "Candidate", 1) + `,`,
-		`Ttl:` + valueToStringMessage(this.Ttl) + `,`,
-		`XXX_unrecognized:` + fmt1.Sprintf("%v", this.XXX_unrecognized) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *ShuffleReply) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&ShuffleReply{`,
-		`Id:` + valueToStringMessage(this.Id) + `,`,
-		`Candidates:` + strings.Replace(fmt1.Sprintf("%v", this.Candidates), "Candidate", "Candidate", 1) + `,`,
-		`XXX_unrecognized:` + fmt1.Sprintf("%v", this.XXX_unrecognized) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func valueToStringMessage(v interface{}) string {
-	rv := reflect.ValueOf(v)
-	if rv.IsNil() {
-		return "nil"
-	}
-	pv := reflect.Indirect(rv).Interface()
-	return fmt1.Sprintf("*%v", pv)
-}
-func (m *UserMessage) Size() (n int) {
-	var l int
-	_ = l
-	if m.Id != nil {
-		n += 1 + sovMessage(uint64(*m.Id))
-	}
-	if m.Payload != nil {
-		l = len(m.Payload)
-		n += 1 + l + sovMessage(uint64(l))
-	}
-	if m.Ts != nil {
-		n += 1 + sovMessage(uint64(*m.Ts))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-func (m *Join) Size() (n int) {
-	var l int
-	_ = l
-	if m.Id != nil {
-		n += 1 + sovMessage(uint64(*m.Id))
-	}
-	if m.Addr != nil {
-		l = len(*m.Addr)
-		n += 1 + l + sovMessage(uint64(l))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-func (m *JoinReply) Size() (n int) {
-	var l int
-	_ = l
-	if m.Id != nil {
-		n += 1 + sovMessage(uint64(*m.Id))
-	}
-	if m.Accept != nil {
-		n += 2
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-func (m *Neighbor) Size() (n int) {
-	var l int
-	_ = l
-	if m.Id != nil {
-		n += 1 + sovMessage(uint64(*m.Id))
-	}
-	if m.Addr != nil {
-		l = len(*m.Addr)
-		n += 1 + l + sovMessage(uint64(l))
-	}
-	if m.Priority != nil {
-		n += 1 + sovMessage(uint64(*m.Priority))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-func (m *NeighborReply) Size() (n int) {
-	var l int
-	_ = l
-	if m.Id != nil {
-		n += 1 + sovMessage(uint64(*m.Id))
-	}
-	if m.Accept != nil {
-		n += 2
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-func (m *ForwardJoin) Size() (n int) {
-	var l int
-	_ = l
-	if m.Id != nil {
-		n += 1 + sovMessage(uint64(*m.Id))
-	}
-	if m.SourceId != nil {
-		n += 1 + sovMessage(uint64(*m.SourceId))
-	}
-	if m.SourceAddr != nil {
-		l = len(*m.SourceAddr)
-		n += 1 + l + sovMessage(uint64(l))
-	}
-	if m.Ttl != nil {
-		n += 1 + sovMessage(uint64(*m.Ttl))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-func (m *Disconnect) Size() (n int) {
-	var l int
-	_ = l
-	if m.Id != nil {
-		n += 1 + sovMessage(uint64(*m.Id))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-func (m *Candidate) Size() (n int) {
-	var l int
-	_ = l
-	if m.Id != nil {
-		n += 1 + sovMessage(uint64(*m.Id))
-	}
-	if m.Addr != nil {
-		l = len(*m.Addr)
-		n += 1 + l + sovMessage(uint64(l))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-func (m *Shuffle) Size() (n int) {
-	var l int
-	_ = l
-	if m.Id != nil {
-		n += 1 + sovMessage(uint64(*m.Id))
-	}
-	if m.SourceId != nil {
-		n += 1 + sovMessage(uint64(*m.SourceId))
-	}
-	if m.Addr != nil {
-		l = len(*m.Addr)
-		n += 1 + l + sovMessage(uint64(l))
-	}
-	if len(m.Candidates) > 0 {
-		for _, e := range m.Candidates {
-			l = e.Size()
-			n += 1 + l + sovMessage(uint64(l))
-		}
-	}
-	if m.Ttl != nil {
-		n += 1 + sovMessage(uint64(*m.Ttl))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-func (m *ShuffleReply) Size() (n int) {
-	var l int
-	_ = l
-	if m.Id != nil {
-		n += 1 + sovMessage(uint64(*m.Id))
-	}
-	if len(m.Candidates) > 0 {
-		for _, e := range m.Candidates {
-			l = e.Size()
-			n += 1 + l + sovMessage(uint64(l))
-		}
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func sovMessage(x uint64) (n int) {
-	for {
-		n++
-		x >>= 7
-		if x == 0 {
-			break
-		}
-	}
-	return n
-}
-func sozMessage(x uint64) (n int) {
-	return sovMessage(uint64((x << 1) ^ uint64((int64(x) >> 63))))
-}
-func NewPopulatedUserMessage(r randyMessage, easy bool) *UserMessage {
-	this := &UserMessage{}
-	v1 := uint64(r.Uint32())
-	this.Id = &v1
-	if r.Intn(10) != 0 {
-		v2 := r.Intn(100)
-		this.Payload = make([]byte, v2)
-		for i := 0; i < v2; i++ {
-			this.Payload[i] = byte(r.Intn(256))
-		}
-	}
-	v3 := r.Int63()
-	if r.Intn(2) == 0 {
-		v3 *= -1
-	}
-	this.Ts = &v3
-	if !easy && r.Intn(10) != 0 {
-		this.XXX_unrecognized = randUnrecognizedMessage(r, 4)
-	}
-	return this
-}
-
-func NewPopulatedJoin(r randyMessage, easy bool) *Join {
-	this := &Join{}
-	v4 := uint64(r.Uint32())
-	this.Id = &v4
-	v5 := randStringMessage(r)
-	this.Addr = &v5
-	if !easy && r.Intn(10) != 0 {
-		this.XXX_unrecognized = randUnrecognizedMessage(r, 3)
-	}
-	return this
-}
-
-func NewPopulatedJoinReply(r randyMessage, easy bool) *JoinReply {
-	this := &JoinReply{}
-	v6 := uint64(r.Uint32())
-	this.Id = &v6
-	v7 := bool(r.Intn(2) == 0)
-	this.Accept = &v7
-	if !easy && r.Intn(10) != 0 {
-		this.XXX_unrecognized = randUnrecognizedMessage(r, 3)
-	}
-	return this
-}
-
-func NewPopulatedNeighbor(r randyMessage, easy bool) *Neighbor {
-	this := &Neighbor{}
-	v8 := uint64(r.Uint32())
-	this.Id = &v8
-	v9 := randStringMessage(r)
-	this.Addr = &v9
-	v10 := Neighbor_Priority([]int32{0, 1}[r.Intn(2)])
-	this.Priority = &v10
-	if !easy && r.Intn(10) != 0 {
-		this.XXX_unrecognized = randUnrecognizedMessage(r, 4)
-	}
-	return this
-}
-
-func NewPopulatedNeighborReply(r randyMessage, easy bool) *NeighborReply {
-	this := &NeighborReply{}
-	v11 := uint64(r.Uint32())
-	this.Id = &v11
-	v12 := bool(r.Intn(2) == 0)
-	this.Accept = &v12
-	if !easy && r.Intn(10) != 0 {
-		this.XXX_unrecognized = randUnrecognizedMessage(r, 3)
-	}
-	return this
-}
-
-func NewPopulatedForwardJoin(r randyMessage, easy bool) *ForwardJoin {
-	this := &ForwardJoin{}
-	v13 := uint64(r.Uint32())
-	this.Id = &v13
-	v14 := uint64(r.Uint32())
-	this.SourceId = &v14
-	v15 := randStringMessage(r)
-	this.SourceAddr = &v15
-	v16 := r.Uint32()
-	this.Ttl = &v16
-	if !easy && r.Intn(10) != 0 {
-		this.XXX_unrecognized = randUnrecognizedMessage(r, 5)
-	}
-	return this
-}
-
-func NewPopulatedDisconnect(r randyMessage, easy bool) *Disconnect {
-	this := &Disconnect{}
-	v17 := uint64(r.Uint32())
-	this.Id = &v17
-	if !easy && r.Intn(10) != 0 {
-		this.XXX_unrecognized = randUnrecognizedMessage(r, 2)
-	}
-	return this
-}
-
-func NewPopulatedCandidate(r randyMessage, easy bool) *Candidate {
-	this := &Candidate{}
-	v18 := uint64(r.Uint32())
-	this.Id = &v18
-	v19 := randStringMessage(r)
-	this.Addr = &v19
-	if !easy && r.Intn(10) != 0 {
-		this.XXX_unrecognized = randUnrecognizedMessage(r, 3)
-	}
-	return this
-}
-
-func NewPopulatedShuffle(r randyMessage, easy bool) *Shuffle {
-	this := &Shuffle{}
-	v20 := uint64(r.Uint32())
-	this.Id = &v20
-	v21 := uint64(r.Uint32())
-	this.SourceId = &v21
-	v22 := randStringMessage(r)
-	this.Addr = &v22
-	if r.Intn(10) != 0 {
-		v23 := r.Intn(10)
-		this.Candidates = make([]*Candidate, v23)
-		for i := 0; i < v23; i++ {
-			this.Candidates[i] = NewPopulatedCandidate(r, easy)
-		}
-	}
-	v24 := r.Uint32()
-	this.Ttl = &v24
-	if !easy && r.Intn(10) != 0 {
-		this.XXX_unrecognized = randUnrecognizedMessage(r, 6)
-	}
-	return this
-}
-
-func NewPopulatedShuffleReply(r randyMessage, easy bool) *ShuffleReply {
-	this := &ShuffleReply{}
-	v25 := uint64(r.Uint32())
-	this.Id = &v25
-	if r.Intn(10) != 0 {
-		v26 := r.Intn(10)
-		this.Candidates = make([]*Candidate, v26)
-		for i := 0; i < v26; i++ {
-			this.Candidates[i] = NewPopulatedCandidate(r, easy)
-		}
-	}
-	if !easy && r.Intn(10) != 0 {
-		this.XXX_unrecognized = randUnrecognizedMessage(r, 3)
-	}
-	return this
-}
-
-type randyMessage interface {
-	Float32() float32
-	Float64() float64
-	Int63() int64
-	Int31() int32
-	Uint32() uint32
-	Intn(n int) int
-}
-
-func randUTF8RuneMessage(r randyMessage) rune {
-	res := rune(r.Uint32() % 1112064)
-	if 55296 <= res {
-		res += 2047
-	}
-	return res
-}
-func randStringMessage(r randyMessage) string {
-	v27 := r.Intn(100)
-	tmps := make([]rune, v27)
-	for i := 0; i < v27; i++ {
-		tmps[i] = randUTF8RuneMessage(r)
-	}
-	return string(tmps)
-}
-func randUnrecognizedMessage(r randyMessage, maxFieldNumber int) (data []byte) {
-	l := r.Intn(5)
-	for i := 0; i < l; i++ {
-		wire := r.Intn(4)
-		if wire == 3 {
-			wire = 5
-		}
-		fieldNumber := maxFieldNumber + r.Intn(100)
-		data = randFieldMessage(data, r, fieldNumber, wire)
-	}
-	return data
-}
-func randFieldMessage(data []byte, r randyMessage, fieldNumber int, wire int) []byte {
-	key := uint32(fieldNumber)<<3 | uint32(wire)
-	switch wire {
-	case 0:
-		data = encodeVarintPopulateMessage(data, uint64(key))
-		v28 := r.Int63()
-		if r.Intn(2) == 0 {
-			v28 *= -1
-		}
-		data = encodeVarintPopulateMessage(data, uint64(v28))
-	case 1:
-		data = encodeVarintPopulateMessage(data, uint64(key))
-		data = append(data, byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)))
-	case 2:
-		data = encodeVarintPopulateMessage(data, uint64(key))
-		ll := r.Intn(100)
-		data = encodeVarintPopulateMessage(data, uint64(ll))
-		for j := 0; j < ll; j++ {
-			data = append(data, byte(r.Intn(256)))
-		}
-	default:
-		data = encodeVarintPopulateMessage(data, uint64(key))
-		data = append(data, byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)))
-	}
-	return data
-}
-func encodeVarintPopulateMessage(data []byte, v uint64) []byte {
-	for v >= 1<<7 {
-		data = append(data, uint8(uint64(v)&0x7f|0x80))
-		v >>= 7
-	}
-	data = append(data, uint8(v))
-	return data
-}
-func (m *UserMessage) Marshal() (data []byte, err error) {
-	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
-	if err != nil {
-		return nil, err
-	}
-	return data[:n], nil
-}
-
-func (m *UserMessage) MarshalTo(data []byte) (n int, err error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if m.Id != nil {
-		data[i] = 0x8
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Id))
-	}
-	if m.Payload != nil {
-		data[i] = 0x12
-		i++
-		i = encodeVarintMessage(data, i, uint64(len(m.Payload)))
-		i += copy(data[i:], m.Payload)
-	}
-	if m.Ts != nil {
-		data[i] = 0x18
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Ts))
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(data[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-func (m *Join) Marshal() (data []byte, err error) {
-	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
-	if err != nil {
-		return nil, err
-	}
-	return data[:n], nil
-}
-
-func (m *Join) MarshalTo(data []byte) (n int, err error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if m.Id != nil {
-		data[i] = 0x8
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Id))
-	}
-	if m.Addr != nil {
-		data[i] = 0x12
-		i++
-		i = encodeVarintMessage(data, i, uint64(len(*m.Addr)))
-		i += copy(data[i:], *m.Addr)
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(data[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-func (m *JoinReply) Marshal() (data []byte, err error) {
-	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
-	if err != nil {
-		return nil, err
-	}
-	return data[:n], nil
-}
-
-func (m *JoinReply) MarshalTo(data []byte) (n int, err error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if m.Id != nil {
-		data[i] = 0x8
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Id))
-	}
-	if m.Accept != nil {
-		data[i] = 0x10
-		i++
-		if *m.Accept {
-			data[i] = 1
-		} else {
-			data[i] = 0
-		}
-		i++
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(data[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-func (m *Neighbor) Marshal() (data []byte, err error) {
-	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
-	if err != nil {
-		return nil, err
-	}
-	return data[:n], nil
-}
-
-func (m *Neighbor) MarshalTo(data []byte) (n int, err error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if m.Id != nil {
-		data[i] = 0x8
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Id))
-	}
-	if m.Addr != nil {
-		data[i] = 0x12
-		i++
-		i = encodeVarintMessage(data, i, uint64(len(*m.Addr)))
-		i += copy(data[i:], *m.Addr)
-	}
-	if m.Priority != nil {
-		data[i] = 0x18
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Priority))
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(data[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-func (m *NeighborReply) Marshal() (data []byte, err error) {
-	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
-	if err != nil {
-		return nil, err
-	}
-	return data[:n], nil
-}
-
-func (m *NeighborReply) MarshalTo(data []byte) (n int, err error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if m.Id != nil {
-		data[i] = 0x8
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Id))
-	}
-	if m.Accept != nil {
-		data[i] = 0x10
-		i++
-		if *m.Accept {
-			data[i] = 1
-		} else {
-			data[i] = 0
-		}
-		i++
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(data[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-func (m *ForwardJoin) Marshal() (data []byte, err error) {
-	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
-	if err != nil {
-		return nil, err
-	}
-	return data[:n], nil
-}
-
-func (m *ForwardJoin) MarshalTo(data []byte) (n int, err error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if m.Id != nil {
-		data[i] = 0x8
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Id))
-	}
-	if m.SourceId != nil {
-		data[i] = 0x10
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.SourceId))
-	}
-	if m.SourceAddr != nil {
-		data[i] = 0x1a
-		i++
-		i = encodeVarintMessage(data, i, uint64(len(*m.SourceAddr)))
-		i += copy(data[i:], *m.SourceAddr)
-	}
-	if m.Ttl != nil {
-		data[i] = 0x20
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Ttl))
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(data[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-func (m *Disconnect) Marshal() (data []byte, err error) {
-	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
-	if err != nil {
-		return nil, err
-	}
-	return data[:n], nil
-}
-
-func (m *Disconnect) MarshalTo(data []byte) (n int, err error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if m.Id != nil {
-		data[i] = 0x8
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Id))
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(data[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-func (m *Candidate) Marshal() (data []byte, err error) {
-	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
-	if err != nil {
-		return nil, err
-	}
-	return data[:n], nil
-}
-
-func (m *Candidate) MarshalTo(data []byte) (n int, err error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if m.Id != nil {
-		data[i] = 0x8
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Id))
-	}
-	if m.Addr != nil {
-		data[i] = 0x12
-		i++
-		i = encodeVarintMessage(data, i, uint64(len(*m.Addr)))
-		i += copy(data[i:], *m.Addr)
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(data[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-func (m *Shuffle) Marshal() (data []byte, err error) {
-	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
-	if err != nil {
-		return nil, err
-	}
-	return data[:n], nil
-}
-
-func (m *Shuffle) MarshalTo(data []byte) (n int, err error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if m.Id != nil {
-		data[i] = 0x8
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Id))
-	}
-	if m.SourceId != nil {
-		data[i] = 0x10
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.SourceId))
-	}
-	if m.Addr != nil {
-		data[i] = 0x1a
-		i++
-		i = encodeVarintMessage(data, i, uint64(len(*m.Addr)))
-		i += copy(data[i:], *m.Addr)
-	}
-	if len(m.Candidates) > 0 {
-		for _, msg := range m.Candidates {
-			data[i] = 0x22
-			i++
-			i = encodeVarintMessage(data, i, uint64(msg.Size()))
-			n, err := msg.MarshalTo(data[i:])
-			if err != nil {
-				return 0, err
-			}
-			i += n
-		}
-	}
-	if m.Ttl != nil {
-		data[i] = 0x28
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Ttl))
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(data[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-func (m *ShuffleReply) Marshal() (data []byte, err error) {
-	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
-	if err != nil {
-		return nil, err
-	}
-	return data[:n], nil
-}
-
-func (m *ShuffleReply) MarshalTo(data []byte) (n int, err error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if m.Id != nil {
-		data[i] = 0x8
-		i++
-		i = encodeVarintMessage(data, i, uint64(*m.Id))
-	}
-	if len(m.Candidates) > 0 {
-		for _, msg := range m.Candidates {
-			data[i] = 0x12
-			i++
-			i = encodeVarintMessage(data, i, uint64(msg.Size()))
-			n, err := msg.MarshalTo(data[i:])
-			if err != nil {
-				return 0, err
-			}
-			i += n
-		}
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(data[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-func encodeFixed64Message(data []byte, offset int, v uint64) int {
-	data[offset] = uint8(v)
-	data[offset+1] = uint8(v >> 8)
-	data[offset+2] = uint8(v >> 16)
-	data[offset+3] = uint8(v >> 24)
-	data[offset+4] = uint8(v >> 32)
-	data[offset+5] = uint8(v >> 40)
-	data[offset+6] = uint8(v >> 48)
-	data[offset+7] = uint8(v >> 56)
-	return offset + 8
-}
-func encodeFixed32Message(data []byte, offset int, v uint32) int {
-	data[offset] = uint8(v)
-	data[offset+1] = uint8(v >> 8)
-	data[offset+2] = uint8(v >> 16)
-	data[offset+3] = uint8(v >> 24)
-	return offset + 4
-}
-func encodeVarintMessage(data []byte, offset int, v uint64) int {
-	for v >= 1<<7 {
-		data[offset] = uint8(v&0x7f | 0x80)
-		v >>= 7
-		offset++
-	}
-	data[offset] = uint8(v)
-	return offset + 1
-}
-func (this *UserMessage) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings1.Join([]string{`&message.UserMessage{` + `Id:` + valueToGoStringMessage(this.Id, "uint64"), `Payload:` + valueToGoStringMessage(this.Payload, "byte"), `Ts:` + valueToGoStringMessage(this.Ts, "int64"), `XXX_unrecognized:` + fmt2.Sprintf("%#v", this.XXX_unrecognized) + `}`}, ", ")
-	return s
-}
-func (this *Join) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings1.Join([]string{`&message.Join{` + `Id:` + valueToGoStringMessage(this.Id, "uint64"), `Addr:` + valueToGoStringMessage(this.Addr, "string"), `XXX_unrecognized:` + fmt2.Sprintf("%#v", this.XXX_unrecognized) + `}`}, ", ")
-	return s
-}
-func (this *JoinReply) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings1.Join([]string{`&message.JoinReply{` + `Id:` + valueToGoStringMessage(this.Id, "uint64"), `Accept:` + valueToGoStringMessage(this.Accept, "bool"), `XXX_unrecognized:` + fmt2.Sprintf("%#v", this.XXX_unrecognized) + `}`}, ", ")
-	return s
-}
-func (this *Neighbor) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings1.Join([]string{`&message.Neighbor{` + `Id:` + valueToGoStringMessage(this.Id, "uint64"), `Addr:` + valueToGoStringMessage(this.Addr, "string"), `Priority:` + valueToGoStringMessage(this.Priority, "message.Neighbor_Priority"), `XXX_unrecognized:` + fmt2.Sprintf("%#v", this.XXX_unrecognized) + `}`}, ", ")
-	return s
-}
-func (this *NeighborReply) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings1.Join([]string{`&message.NeighborReply{` + `Id:` + valueToGoStringMessage(this.Id, "uint64"), `Accept:` + valueToGoStringMessage(this.Accept, "bool"), `XXX_unrecognized:` + fmt2.Sprintf("%#v", this.XXX_unrecognized) + `}`}, ", ")
-	return s
-}
-func (this *ForwardJoin) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings1.Join([]string{`&message.ForwardJoin{` + `Id:` + valueToGoStringMessage(this.Id, "uint64"), `SourceId:` + valueToGoStringMessage(this.SourceId, "uint64"), `SourceAddr:` + valueToGoStringMessage(this.SourceAddr, "string"), `Ttl:` + valueToGoStringMessage(this.Ttl, "uint32"), `XXX_unrecognized:` + fmt2.Sprintf("%#v", this.XXX_unrecognized) + `}`}, ", ")
-	return s
-}
-func (this *Disconnect) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings1.Join([]string{`&message.Disconnect{` + `Id:` + valueToGoStringMessage(this.Id, "uint64"), `XXX_unrecognized:` + fmt2.Sprintf("%#v", this.XXX_unrecognized) + `}`}, ", ")
-	return s
-}
-func (this *Candidate) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings1.Join([]string{`&message.Candidate{` + `Id:` + valueToGoStringMessage(this.Id, "uint64"), `Addr:` + valueToGoStringMessage(this.Addr, "string"), `XXX_unrecognized:` + fmt2.Sprintf("%#v", this.XXX_unrecognized) + `}`}, ", ")
-	return s
-}
-func (this *Shuffle) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings1.Join([]string{`&message.Shuffle{` + `Id:` + valueToGoStringMessage(this.Id, "uint64"), `SourceId:` + valueToGoStringMessage(this.SourceId, "uint64"), `Addr:` + valueToGoStringMessage(this.Addr, "string"), `Candidates:` + fmt2.Sprintf("%#v", this.Candidates), `Ttl:` + valueToGoStringMessage(this.Ttl, "uint32"), `XXX_unrecognized:` + fmt2.Sprintf("%#v", this.XXX_unrecognized) + `}`}, ", ")
-	return s
-}
-func (this *ShuffleReply) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings1.Join([]string{`&message.ShuffleReply{` + `Id:` + valueToGoStringMessage(this.Id, "uint64"), `Candidates:` + fmt2.Sprintf("%#v", this.Candidates), `XXX_unrecognized:` + fmt2.Sprintf("%#v", this.XXX_unrecognized) + `}`}, ", ")
-	return s
-}
-func valueToGoStringMessage(v interface{}, typ string) string {
-	rv := reflect1.ValueOf(v)
-	if rv.IsNil() {
-		return "nil"
-	}
-	pv := reflect1.Indirect(rv).Interface()
-	return fmt2.Sprintf("func(v %v) *%v { return &v } ( %#v )", typ, typ, pv)
-}
-func extensionToGoStringMessage(e map[int32]code_google_com_p_gogoprotobuf_proto1.Extension) string {
-	if e == nil {
-		return "nil"
-	}
-	s := "map[int32]proto.Extension{"
-	keys := make([]int, 0, len(e))
-	for k := range e {
-		keys = append(keys, int(k))
-	}
-	sort.Ints(keys)
-	ss := []string{}
-	for _, k := range keys {
-		ss = append(ss, strconv.Itoa(k)+": "+e[int32(k)].GoString())
-	}
-	s += strings1.Join(ss, ",") + "}"
-	return s
 }
 func (this *UserMessage) VerboseEqual(that interface{}) error {
 	if that == nil {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that == nil && this != nil")
+		return fmt.Errorf("that == nil && this != nil")
 	}
 
 	that1, ok := that.(*UserMessage)
 	if !ok {
-		return fmt3.Errorf("that is not of type *UserMessage")
+		that2, ok := that.(UserMessage)
+		if ok {
+			that1 = &that2
+		} else {
+			return fmt.Errorf("that is not of type *UserMessage")
+		}
 	}
 	if that1 == nil {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that is type *UserMessage but is nil && this != nil")
+		return fmt.Errorf("that is type *UserMessage but is nil && this != nil")
 	} else if this == nil {
-		return fmt3.Errorf("that is type *UserMessagebut is not nil && this == nil")
+		return fmt.Errorf("that is type *UserMessage but is not nil && this == nil")
 	}
 	if this.Id != nil && that1.Id != nil {
 		if *this.Id != *that1.Id {
-			return fmt3.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
+			return fmt.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
 		}
 	} else if this.Id != nil {
-		return fmt3.Errorf("this.Id == nil && that.Id != nil")
+		return fmt.Errorf("this.Id == nil && that.Id != nil")
 	} else if that1.Id != nil {
-		return fmt3.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
+		return fmt.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
 	}
 	if !bytes.Equal(this.Payload, that1.Payload) {
-		return fmt3.Errorf("Payload this(%v) Not Equal that(%v)", this.Payload, that1.Payload)
+		return fmt.Errorf("Payload this(%v) Not Equal that(%v)", this.Payload, that1.Payload)
 	}
 	if this.Ts != nil && that1.Ts != nil {
 		if *this.Ts != *that1.Ts {
-			return fmt3.Errorf("Ts this(%v) Not Equal that(%v)", *this.Ts, *that1.Ts)
+			return fmt.Errorf("Ts this(%v) Not Equal that(%v)", *this.Ts, *that1.Ts)
 		}
 	} else if this.Ts != nil {
-		return fmt3.Errorf("this.Ts == nil && that.Ts != nil")
+		return fmt.Errorf("this.Ts == nil && that.Ts != nil")
 	} else if that1.Ts != nil {
-		return fmt3.Errorf("Ts this(%v) Not Equal that(%v)", this.Ts, that1.Ts)
+		return fmt.Errorf("Ts this(%v) Not Equal that(%v)", this.Ts, that1.Ts)
 	}
 	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return fmt3.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
+		return fmt.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
 	}
 	return nil
 }
@@ -2360,7 +453,12 @@ func (this *UserMessage) Equal(that interface{}) bool {
 
 	that1, ok := that.(*UserMessage)
 	if !ok {
-		return false
+		that2, ok := that.(UserMessage)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
 	}
 	if that1 == nil {
 		if this == nil {
@@ -2401,41 +499,46 @@ func (this *Join) VerboseEqual(that interface{}) error {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that == nil && this != nil")
+		return fmt.Errorf("that == nil && this != nil")
 	}
 
 	that1, ok := that.(*Join)
 	if !ok {
-		return fmt3.Errorf("that is not of type *Join")
+		that2, ok := that.(Join)
+		if ok {
+			that1 = &that2
+		} else {
+			return fmt.Errorf("that is not of type *Join")
+		}
 	}
 	if that1 == nil {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that is type *Join but is nil && this != nil")
+		return fmt.Errorf("that is type *Join but is nil && this != nil")
 	} else if this == nil {
-		return fmt3.Errorf("that is type *Joinbut is not nil && this == nil")
+		return fmt.Errorf("that is type *Join but is not nil && this == nil")
 	}
 	if this.Id != nil && that1.Id != nil {
 		if *this.Id != *that1.Id {
-			return fmt3.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
+			return fmt.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
 		}
 	} else if this.Id != nil {
-		return fmt3.Errorf("this.Id == nil && that.Id != nil")
+		return fmt.Errorf("this.Id == nil && that.Id != nil")
 	} else if that1.Id != nil {
-		return fmt3.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
+		return fmt.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
 	}
 	if this.Addr != nil && that1.Addr != nil {
 		if *this.Addr != *that1.Addr {
-			return fmt3.Errorf("Addr this(%v) Not Equal that(%v)", *this.Addr, *that1.Addr)
+			return fmt.Errorf("Addr this(%v) Not Equal that(%v)", *this.Addr, *that1.Addr)
 		}
 	} else if this.Addr != nil {
-		return fmt3.Errorf("this.Addr == nil && that.Addr != nil")
+		return fmt.Errorf("this.Addr == nil && that.Addr != nil")
 	} else if that1.Addr != nil {
-		return fmt3.Errorf("Addr this(%v) Not Equal that(%v)", this.Addr, that1.Addr)
+		return fmt.Errorf("Addr this(%v) Not Equal that(%v)", this.Addr, that1.Addr)
 	}
 	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return fmt3.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
+		return fmt.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
 	}
 	return nil
 }
@@ -2449,7 +552,12 @@ func (this *Join) Equal(that interface{}) bool {
 
 	that1, ok := that.(*Join)
 	if !ok {
-		return false
+		that2, ok := that.(Join)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
 	}
 	if that1 == nil {
 		if this == nil {
@@ -2487,41 +595,46 @@ func (this *JoinReply) VerboseEqual(that interface{}) error {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that == nil && this != nil")
+		return fmt.Errorf("that == nil && this != nil")
 	}
 
 	that1, ok := that.(*JoinReply)
 	if !ok {
-		return fmt3.Errorf("that is not of type *JoinReply")
+		that2, ok := that.(JoinReply)
+		if ok {
+			that1 = &that2
+		} else {
+			return fmt.Errorf("that is not of type *JoinReply")
+		}
 	}
 	if that1 == nil {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that is type *JoinReply but is nil && this != nil")
+		return fmt.Errorf("that is type *JoinReply but is nil && this != nil")
 	} else if this == nil {
-		return fmt3.Errorf("that is type *JoinReplybut is not nil && this == nil")
+		return fmt.Errorf("that is type *JoinReply but is not nil && this == nil")
 	}
 	if this.Id != nil && that1.Id != nil {
 		if *this.Id != *that1.Id {
-			return fmt3.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
+			return fmt.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
 		}
 	} else if this.Id != nil {
-		return fmt3.Errorf("this.Id == nil && that.Id != nil")
+		return fmt.Errorf("this.Id == nil && that.Id != nil")
 	} else if that1.Id != nil {
-		return fmt3.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
+		return fmt.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
 	}
 	if this.Accept != nil && that1.Accept != nil {
 		if *this.Accept != *that1.Accept {
-			return fmt3.Errorf("Accept this(%v) Not Equal that(%v)", *this.Accept, *that1.Accept)
+			return fmt.Errorf("Accept this(%v) Not Equal that(%v)", *this.Accept, *that1.Accept)
 		}
 	} else if this.Accept != nil {
-		return fmt3.Errorf("this.Accept == nil && that.Accept != nil")
+		return fmt.Errorf("this.Accept == nil && that.Accept != nil")
 	} else if that1.Accept != nil {
-		return fmt3.Errorf("Accept this(%v) Not Equal that(%v)", this.Accept, that1.Accept)
+		return fmt.Errorf("Accept this(%v) Not Equal that(%v)", this.Accept, that1.Accept)
 	}
 	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return fmt3.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
+		return fmt.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
 	}
 	return nil
 }
@@ -2535,7 +648,12 @@ func (this *JoinReply) Equal(that interface{}) bool {
 
 	that1, ok := that.(*JoinReply)
 	if !ok {
-		return false
+		that2, ok := that.(JoinReply)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
 	}
 	if that1 == nil {
 		if this == nil {
@@ -2573,50 +691,55 @@ func (this *Neighbor) VerboseEqual(that interface{}) error {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that == nil && this != nil")
+		return fmt.Errorf("that == nil && this != nil")
 	}
 
 	that1, ok := that.(*Neighbor)
 	if !ok {
-		return fmt3.Errorf("that is not of type *Neighbor")
+		that2, ok := that.(Neighbor)
+		if ok {
+			that1 = &that2
+		} else {
+			return fmt.Errorf("that is not of type *Neighbor")
+		}
 	}
 	if that1 == nil {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that is type *Neighbor but is nil && this != nil")
+		return fmt.Errorf("that is type *Neighbor but is nil && this != nil")
 	} else if this == nil {
-		return fmt3.Errorf("that is type *Neighborbut is not nil && this == nil")
+		return fmt.Errorf("that is type *Neighbor but is not nil && this == nil")
 	}
 	if this.Id != nil && that1.Id != nil {
 		if *this.Id != *that1.Id {
-			return fmt3.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
+			return fmt.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
 		}
 	} else if this.Id != nil {
-		return fmt3.Errorf("this.Id == nil && that.Id != nil")
+		return fmt.Errorf("this.Id == nil && that.Id != nil")
 	} else if that1.Id != nil {
-		return fmt3.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
+		return fmt.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
 	}
 	if this.Addr != nil && that1.Addr != nil {
 		if *this.Addr != *that1.Addr {
-			return fmt3.Errorf("Addr this(%v) Not Equal that(%v)", *this.Addr, *that1.Addr)
+			return fmt.Errorf("Addr this(%v) Not Equal that(%v)", *this.Addr, *that1.Addr)
 		}
 	} else if this.Addr != nil {
-		return fmt3.Errorf("this.Addr == nil && that.Addr != nil")
+		return fmt.Errorf("this.Addr == nil && that.Addr != nil")
 	} else if that1.Addr != nil {
-		return fmt3.Errorf("Addr this(%v) Not Equal that(%v)", this.Addr, that1.Addr)
+		return fmt.Errorf("Addr this(%v) Not Equal that(%v)", this.Addr, that1.Addr)
 	}
 	if this.Priority != nil && that1.Priority != nil {
 		if *this.Priority != *that1.Priority {
-			return fmt3.Errorf("Priority this(%v) Not Equal that(%v)", *this.Priority, *that1.Priority)
+			return fmt.Errorf("Priority this(%v) Not Equal that(%v)", *this.Priority, *that1.Priority)
 		}
 	} else if this.Priority != nil {
-		return fmt3.Errorf("this.Priority == nil && that.Priority != nil")
+		return fmt.Errorf("this.Priority == nil && that.Priority != nil")
 	} else if that1.Priority != nil {
-		return fmt3.Errorf("Priority this(%v) Not Equal that(%v)", this.Priority, that1.Priority)
+		return fmt.Errorf("Priority this(%v) Not Equal that(%v)", this.Priority, that1.Priority)
 	}
 	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return fmt3.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
+		return fmt.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
 	}
 	return nil
 }
@@ -2630,7 +753,12 @@ func (this *Neighbor) Equal(that interface{}) bool {
 
 	that1, ok := that.(*Neighbor)
 	if !ok {
-		return false
+		that2, ok := that.(Neighbor)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
 	}
 	if that1 == nil {
 		if this == nil {
@@ -2677,41 +805,46 @@ func (this *NeighborReply) VerboseEqual(that interface{}) error {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that == nil && this != nil")
+		return fmt.Errorf("that == nil && this != nil")
 	}
 
 	that1, ok := that.(*NeighborReply)
 	if !ok {
-		return fmt3.Errorf("that is not of type *NeighborReply")
+		that2, ok := that.(NeighborReply)
+		if ok {
+			that1 = &that2
+		} else {
+			return fmt.Errorf("that is not of type *NeighborReply")
+		}
 	}
 	if that1 == nil {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that is type *NeighborReply but is nil && this != nil")
+		return fmt.Errorf("that is type *NeighborReply but is nil && this != nil")
 	} else if this == nil {
-		return fmt3.Errorf("that is type *NeighborReplybut is not nil && this == nil")
+		return fmt.Errorf("that is type *NeighborReply but is not nil && this == nil")
 	}
 	if this.Id != nil && that1.Id != nil {
 		if *this.Id != *that1.Id {
-			return fmt3.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
+			return fmt.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
 		}
 	} else if this.Id != nil {
-		return fmt3.Errorf("this.Id == nil && that.Id != nil")
+		return fmt.Errorf("this.Id == nil && that.Id != nil")
 	} else if that1.Id != nil {
-		return fmt3.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
+		return fmt.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
 	}
 	if this.Accept != nil && that1.Accept != nil {
 		if *this.Accept != *that1.Accept {
-			return fmt3.Errorf("Accept this(%v) Not Equal that(%v)", *this.Accept, *that1.Accept)
+			return fmt.Errorf("Accept this(%v) Not Equal that(%v)", *this.Accept, *that1.Accept)
 		}
 	} else if this.Accept != nil {
-		return fmt3.Errorf("this.Accept == nil && that.Accept != nil")
+		return fmt.Errorf("this.Accept == nil && that.Accept != nil")
 	} else if that1.Accept != nil {
-		return fmt3.Errorf("Accept this(%v) Not Equal that(%v)", this.Accept, that1.Accept)
+		return fmt.Errorf("Accept this(%v) Not Equal that(%v)", this.Accept, that1.Accept)
 	}
 	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return fmt3.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
+		return fmt.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
 	}
 	return nil
 }
@@ -2725,7 +858,12 @@ func (this *NeighborReply) Equal(that interface{}) bool {
 
 	that1, ok := that.(*NeighborReply)
 	if !ok {
-		return false
+		that2, ok := that.(NeighborReply)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
 	}
 	if that1 == nil {
 		if this == nil {
@@ -2763,59 +901,64 @@ func (this *ForwardJoin) VerboseEqual(that interface{}) error {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that == nil && this != nil")
+		return fmt.Errorf("that == nil && this != nil")
 	}
 
 	that1, ok := that.(*ForwardJoin)
 	if !ok {
-		return fmt3.Errorf("that is not of type *ForwardJoin")
+		that2, ok := that.(ForwardJoin)
+		if ok {
+			that1 = &that2
+		} else {
+			return fmt.Errorf("that is not of type *ForwardJoin")
+		}
 	}
 	if that1 == nil {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that is type *ForwardJoin but is nil && this != nil")
+		return fmt.Errorf("that is type *ForwardJoin but is nil && this != nil")
 	} else if this == nil {
-		return fmt3.Errorf("that is type *ForwardJoinbut is not nil && this == nil")
+		return fmt.Errorf("that is type *ForwardJoin but is not nil && this == nil")
 	}
 	if this.Id != nil && that1.Id != nil {
 		if *this.Id != *that1.Id {
-			return fmt3.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
+			return fmt.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
 		}
 	} else if this.Id != nil {
-		return fmt3.Errorf("this.Id == nil && that.Id != nil")
+		return fmt.Errorf("this.Id == nil && that.Id != nil")
 	} else if that1.Id != nil {
-		return fmt3.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
+		return fmt.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
 	}
 	if this.SourceId != nil && that1.SourceId != nil {
 		if *this.SourceId != *that1.SourceId {
-			return fmt3.Errorf("SourceId this(%v) Not Equal that(%v)", *this.SourceId, *that1.SourceId)
+			return fmt.Errorf("SourceId this(%v) Not Equal that(%v)", *this.SourceId, *that1.SourceId)
 		}
 	} else if this.SourceId != nil {
-		return fmt3.Errorf("this.SourceId == nil && that.SourceId != nil")
+		return fmt.Errorf("this.SourceId == nil && that.SourceId != nil")
 	} else if that1.SourceId != nil {
-		return fmt3.Errorf("SourceId this(%v) Not Equal that(%v)", this.SourceId, that1.SourceId)
+		return fmt.Errorf("SourceId this(%v) Not Equal that(%v)", this.SourceId, that1.SourceId)
 	}
 	if this.SourceAddr != nil && that1.SourceAddr != nil {
 		if *this.SourceAddr != *that1.SourceAddr {
-			return fmt3.Errorf("SourceAddr this(%v) Not Equal that(%v)", *this.SourceAddr, *that1.SourceAddr)
+			return fmt.Errorf("SourceAddr this(%v) Not Equal that(%v)", *this.SourceAddr, *that1.SourceAddr)
 		}
 	} else if this.SourceAddr != nil {
-		return fmt3.Errorf("this.SourceAddr == nil && that.SourceAddr != nil")
+		return fmt.Errorf("this.SourceAddr == nil && that.SourceAddr != nil")
 	} else if that1.SourceAddr != nil {
-		return fmt3.Errorf("SourceAddr this(%v) Not Equal that(%v)", this.SourceAddr, that1.SourceAddr)
+		return fmt.Errorf("SourceAddr this(%v) Not Equal that(%v)", this.SourceAddr, that1.SourceAddr)
 	}
 	if this.Ttl != nil && that1.Ttl != nil {
 		if *this.Ttl != *that1.Ttl {
-			return fmt3.Errorf("Ttl this(%v) Not Equal that(%v)", *this.Ttl, *that1.Ttl)
+			return fmt.Errorf("Ttl this(%v) Not Equal that(%v)", *this.Ttl, *that1.Ttl)
 		}
 	} else if this.Ttl != nil {
-		return fmt3.Errorf("this.Ttl == nil && that.Ttl != nil")
+		return fmt.Errorf("this.Ttl == nil && that.Ttl != nil")
 	} else if that1.Ttl != nil {
-		return fmt3.Errorf("Ttl this(%v) Not Equal that(%v)", this.Ttl, that1.Ttl)
+		return fmt.Errorf("Ttl this(%v) Not Equal that(%v)", this.Ttl, that1.Ttl)
 	}
 	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return fmt3.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
+		return fmt.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
 	}
 	return nil
 }
@@ -2829,7 +972,12 @@ func (this *ForwardJoin) Equal(that interface{}) bool {
 
 	that1, ok := that.(*ForwardJoin)
 	if !ok {
-		return false
+		that2, ok := that.(ForwardJoin)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
 	}
 	if that1 == nil {
 		if this == nil {
@@ -2885,32 +1033,37 @@ func (this *Disconnect) VerboseEqual(that interface{}) error {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that == nil && this != nil")
+		return fmt.Errorf("that == nil && this != nil")
 	}
 
 	that1, ok := that.(*Disconnect)
 	if !ok {
-		return fmt3.Errorf("that is not of type *Disconnect")
+		that2, ok := that.(Disconnect)
+		if ok {
+			that1 = &that2
+		} else {
+			return fmt.Errorf("that is not of type *Disconnect")
+		}
 	}
 	if that1 == nil {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that is type *Disconnect but is nil && this != nil")
+		return fmt.Errorf("that is type *Disconnect but is nil && this != nil")
 	} else if this == nil {
-		return fmt3.Errorf("that is type *Disconnectbut is not nil && this == nil")
+		return fmt.Errorf("that is type *Disconnect but is not nil && this == nil")
 	}
 	if this.Id != nil && that1.Id != nil {
 		if *this.Id != *that1.Id {
-			return fmt3.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
+			return fmt.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
 		}
 	} else if this.Id != nil {
-		return fmt3.Errorf("this.Id == nil && that.Id != nil")
+		return fmt.Errorf("this.Id == nil && that.Id != nil")
 	} else if that1.Id != nil {
-		return fmt3.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
+		return fmt.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
 	}
 	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return fmt3.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
+		return fmt.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
 	}
 	return nil
 }
@@ -2924,7 +1077,12 @@ func (this *Disconnect) Equal(that interface{}) bool {
 
 	that1, ok := that.(*Disconnect)
 	if !ok {
-		return false
+		that2, ok := that.(Disconnect)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
 	}
 	if that1 == nil {
 		if this == nil {
@@ -2953,41 +1111,46 @@ func (this *Candidate) VerboseEqual(that interface{}) error {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that == nil && this != nil")
+		return fmt.Errorf("that == nil && this != nil")
 	}
 
 	that1, ok := that.(*Candidate)
 	if !ok {
-		return fmt3.Errorf("that is not of type *Candidate")
+		that2, ok := that.(Candidate)
+		if ok {
+			that1 = &that2
+		} else {
+			return fmt.Errorf("that is not of type *Candidate")
+		}
 	}
 	if that1 == nil {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that is type *Candidate but is nil && this != nil")
+		return fmt.Errorf("that is type *Candidate but is nil && this != nil")
 	} else if this == nil {
-		return fmt3.Errorf("that is type *Candidatebut is not nil && this == nil")
+		return fmt.Errorf("that is type *Candidate but is not nil && this == nil")
 	}
 	if this.Id != nil && that1.Id != nil {
 		if *this.Id != *that1.Id {
-			return fmt3.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
+			return fmt.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
 		}
 	} else if this.Id != nil {
-		return fmt3.Errorf("this.Id == nil && that.Id != nil")
+		return fmt.Errorf("this.Id == nil && that.Id != nil")
 	} else if that1.Id != nil {
-		return fmt3.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
+		return fmt.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
 	}
 	if this.Addr != nil && that1.Addr != nil {
 		if *this.Addr != *that1.Addr {
-			return fmt3.Errorf("Addr this(%v) Not Equal that(%v)", *this.Addr, *that1.Addr)
+			return fmt.Errorf("Addr this(%v) Not Equal that(%v)", *this.Addr, *that1.Addr)
 		}
 	} else if this.Addr != nil {
-		return fmt3.Errorf("this.Addr == nil && that.Addr != nil")
+		return fmt.Errorf("this.Addr == nil && that.Addr != nil")
 	} else if that1.Addr != nil {
-		return fmt3.Errorf("Addr this(%v) Not Equal that(%v)", this.Addr, that1.Addr)
+		return fmt.Errorf("Addr this(%v) Not Equal that(%v)", this.Addr, that1.Addr)
 	}
 	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return fmt3.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
+		return fmt.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
 	}
 	return nil
 }
@@ -3001,7 +1164,12 @@ func (this *Candidate) Equal(that interface{}) bool {
 
 	that1, ok := that.(*Candidate)
 	if !ok {
-		return false
+		that2, ok := that.(Candidate)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
 	}
 	if that1 == nil {
 		if this == nil {
@@ -3039,67 +1207,72 @@ func (this *Shuffle) VerboseEqual(that interface{}) error {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that == nil && this != nil")
+		return fmt.Errorf("that == nil && this != nil")
 	}
 
 	that1, ok := that.(*Shuffle)
 	if !ok {
-		return fmt3.Errorf("that is not of type *Shuffle")
+		that2, ok := that.(Shuffle)
+		if ok {
+			that1 = &that2
+		} else {
+			return fmt.Errorf("that is not of type *Shuffle")
+		}
 	}
 	if that1 == nil {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that is type *Shuffle but is nil && this != nil")
+		return fmt.Errorf("that is type *Shuffle but is nil && this != nil")
 	} else if this == nil {
-		return fmt3.Errorf("that is type *Shufflebut is not nil && this == nil")
+		return fmt.Errorf("that is type *Shuffle but is not nil && this == nil")
 	}
 	if this.Id != nil && that1.Id != nil {
 		if *this.Id != *that1.Id {
-			return fmt3.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
+			return fmt.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
 		}
 	} else if this.Id != nil {
-		return fmt3.Errorf("this.Id == nil && that.Id != nil")
+		return fmt.Errorf("this.Id == nil && that.Id != nil")
 	} else if that1.Id != nil {
-		return fmt3.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
+		return fmt.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
 	}
 	if this.SourceId != nil && that1.SourceId != nil {
 		if *this.SourceId != *that1.SourceId {
-			return fmt3.Errorf("SourceId this(%v) Not Equal that(%v)", *this.SourceId, *that1.SourceId)
+			return fmt.Errorf("SourceId this(%v) Not Equal that(%v)", *this.SourceId, *that1.SourceId)
 		}
 	} else if this.SourceId != nil {
-		return fmt3.Errorf("this.SourceId == nil && that.SourceId != nil")
+		return fmt.Errorf("this.SourceId == nil && that.SourceId != nil")
 	} else if that1.SourceId != nil {
-		return fmt3.Errorf("SourceId this(%v) Not Equal that(%v)", this.SourceId, that1.SourceId)
+		return fmt.Errorf("SourceId this(%v) Not Equal that(%v)", this.SourceId, that1.SourceId)
 	}
 	if this.Addr != nil && that1.Addr != nil {
 		if *this.Addr != *that1.Addr {
-			return fmt3.Errorf("Addr this(%v) Not Equal that(%v)", *this.Addr, *that1.Addr)
+			return fmt.Errorf("Addr this(%v) Not Equal that(%v)", *this.Addr, *that1.Addr)
 		}
 	} else if this.Addr != nil {
-		return fmt3.Errorf("this.Addr == nil && that.Addr != nil")
+		return fmt.Errorf("this.Addr == nil && that.Addr != nil")
 	} else if that1.Addr != nil {
-		return fmt3.Errorf("Addr this(%v) Not Equal that(%v)", this.Addr, that1.Addr)
+		return fmt.Errorf("Addr this(%v) Not Equal that(%v)", this.Addr, that1.Addr)
 	}
 	if len(this.Candidates) != len(that1.Candidates) {
-		return fmt3.Errorf("Candidates this(%v) Not Equal that(%v)", len(this.Candidates), len(that1.Candidates))
+		return fmt.Errorf("Candidates this(%v) Not Equal that(%v)", len(this.Candidates), len(that1.Candidates))
 	}
 	for i := range this.Candidates {
 		if !this.Candidates[i].Equal(that1.Candidates[i]) {
-			return fmt3.Errorf("Candidates this[%v](%v) Not Equal that[%v](%v)", i, this.Candidates[i], i, that1.Candidates[i])
+			return fmt.Errorf("Candidates this[%v](%v) Not Equal that[%v](%v)", i, this.Candidates[i], i, that1.Candidates[i])
 		}
 	}
 	if this.Ttl != nil && that1.Ttl != nil {
 		if *this.Ttl != *that1.Ttl {
-			return fmt3.Errorf("Ttl this(%v) Not Equal that(%v)", *this.Ttl, *that1.Ttl)
+			return fmt.Errorf("Ttl this(%v) Not Equal that(%v)", *this.Ttl, *that1.Ttl)
 		}
 	} else if this.Ttl != nil {
-		return fmt3.Errorf("this.Ttl == nil && that.Ttl != nil")
+		return fmt.Errorf("this.Ttl == nil && that.Ttl != nil")
 	} else if that1.Ttl != nil {
-		return fmt3.Errorf("Ttl this(%v) Not Equal that(%v)", this.Ttl, that1.Ttl)
+		return fmt.Errorf("Ttl this(%v) Not Equal that(%v)", this.Ttl, that1.Ttl)
 	}
 	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return fmt3.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
+		return fmt.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
 	}
 	return nil
 }
@@ -3113,7 +1286,12 @@ func (this *Shuffle) Equal(that interface{}) bool {
 
 	that1, ok := that.(*Shuffle)
 	if !ok {
-		return false
+		that2, ok := that.(Shuffle)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
 	}
 	if that1 == nil {
 		if this == nil {
@@ -3177,40 +1355,45 @@ func (this *ShuffleReply) VerboseEqual(that interface{}) error {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that == nil && this != nil")
+		return fmt.Errorf("that == nil && this != nil")
 	}
 
 	that1, ok := that.(*ShuffleReply)
 	if !ok {
-		return fmt3.Errorf("that is not of type *ShuffleReply")
+		that2, ok := that.(ShuffleReply)
+		if ok {
+			that1 = &that2
+		} else {
+			return fmt.Errorf("that is not of type *ShuffleReply")
+		}
 	}
 	if that1 == nil {
 		if this == nil {
 			return nil
 		}
-		return fmt3.Errorf("that is type *ShuffleReply but is nil && this != nil")
+		return fmt.Errorf("that is type *ShuffleReply but is nil && this != nil")
 	} else if this == nil {
-		return fmt3.Errorf("that is type *ShuffleReplybut is not nil && this == nil")
+		return fmt.Errorf("that is type *ShuffleReply but is not nil && this == nil")
 	}
 	if this.Id != nil && that1.Id != nil {
 		if *this.Id != *that1.Id {
-			return fmt3.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
+			return fmt.Errorf("Id this(%v) Not Equal that(%v)", *this.Id, *that1.Id)
 		}
 	} else if this.Id != nil {
-		return fmt3.Errorf("this.Id == nil && that.Id != nil")
+		return fmt.Errorf("this.Id == nil && that.Id != nil")
 	} else if that1.Id != nil {
-		return fmt3.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
+		return fmt.Errorf("Id this(%v) Not Equal that(%v)", this.Id, that1.Id)
 	}
 	if len(this.Candidates) != len(that1.Candidates) {
-		return fmt3.Errorf("Candidates this(%v) Not Equal that(%v)", len(this.Candidates), len(that1.Candidates))
+		return fmt.Errorf("Candidates this(%v) Not Equal that(%v)", len(this.Candidates), len(that1.Candidates))
 	}
 	for i := range this.Candidates {
 		if !this.Candidates[i].Equal(that1.Candidates[i]) {
-			return fmt3.Errorf("Candidates this[%v](%v) Not Equal that[%v](%v)", i, this.Candidates[i], i, that1.Candidates[i])
+			return fmt.Errorf("Candidates this[%v](%v) Not Equal that[%v](%v)", i, this.Candidates[i], i, that1.Candidates[i])
 		}
 	}
 	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return fmt3.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
+		return fmt.Errorf("XXX_unrecognized this(%v) Not Equal that(%v)", this.XXX_unrecognized, that1.XXX_unrecognized)
 	}
 	return nil
 }
@@ -3224,7 +1407,12 @@ func (this *ShuffleReply) Equal(that interface{}) bool {
 
 	that1, ok := that.(*ShuffleReply)
 	if !ok {
-		return false
+		that2, ok := that.(ShuffleReply)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
 	}
 	if that1 == nil {
 		if this == nil {
@@ -3255,4 +1443,2557 @@ func (this *ShuffleReply) Equal(that interface{}) bool {
 		return false
 	}
 	return true
+}
+func (this *UserMessage) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 7)
+	s = append(s, "&message.UserMessage{")
+	if this.Id != nil {
+		s = append(s, "Id: "+valueToGoStringMessage(this.Id, "uint64")+",\n")
+	}
+	if this.Payload != nil {
+		s = append(s, "Payload: "+valueToGoStringMessage(this.Payload, "byte")+",\n")
+	}
+	if this.Ts != nil {
+		s = append(s, "Ts: "+valueToGoStringMessage(this.Ts, "int64")+",\n")
+	}
+	if this.XXX_unrecognized != nil {
+		s = append(s, "XXX_unrecognized:"+fmt.Sprintf("%#v", this.XXX_unrecognized)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Join) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 6)
+	s = append(s, "&message.Join{")
+	if this.Id != nil {
+		s = append(s, "Id: "+valueToGoStringMessage(this.Id, "uint64")+",\n")
+	}
+	if this.Addr != nil {
+		s = append(s, "Addr: "+valueToGoStringMessage(this.Addr, "string")+",\n")
+	}
+	if this.XXX_unrecognized != nil {
+		s = append(s, "XXX_unrecognized:"+fmt.Sprintf("%#v", this.XXX_unrecognized)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *JoinReply) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 6)
+	s = append(s, "&message.JoinReply{")
+	if this.Id != nil {
+		s = append(s, "Id: "+valueToGoStringMessage(this.Id, "uint64")+",\n")
+	}
+	if this.Accept != nil {
+		s = append(s, "Accept: "+valueToGoStringMessage(this.Accept, "bool")+",\n")
+	}
+	if this.XXX_unrecognized != nil {
+		s = append(s, "XXX_unrecognized:"+fmt.Sprintf("%#v", this.XXX_unrecognized)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Neighbor) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 7)
+	s = append(s, "&message.Neighbor{")
+	if this.Id != nil {
+		s = append(s, "Id: "+valueToGoStringMessage(this.Id, "uint64")+",\n")
+	}
+	if this.Addr != nil {
+		s = append(s, "Addr: "+valueToGoStringMessage(this.Addr, "string")+",\n")
+	}
+	if this.Priority != nil {
+		s = append(s, "Priority: "+valueToGoStringMessage(this.Priority, "message.Neighbor_Priority")+",\n")
+	}
+	if this.XXX_unrecognized != nil {
+		s = append(s, "XXX_unrecognized:"+fmt.Sprintf("%#v", this.XXX_unrecognized)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *NeighborReply) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 6)
+	s = append(s, "&message.NeighborReply{")
+	if this.Id != nil {
+		s = append(s, "Id: "+valueToGoStringMessage(this.Id, "uint64")+",\n")
+	}
+	if this.Accept != nil {
+		s = append(s, "Accept: "+valueToGoStringMessage(this.Accept, "bool")+",\n")
+	}
+	if this.XXX_unrecognized != nil {
+		s = append(s, "XXX_unrecognized:"+fmt.Sprintf("%#v", this.XXX_unrecognized)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *ForwardJoin) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 8)
+	s = append(s, "&message.ForwardJoin{")
+	if this.Id != nil {
+		s = append(s, "Id: "+valueToGoStringMessage(this.Id, "uint64")+",\n")
+	}
+	if this.SourceId != nil {
+		s = append(s, "SourceId: "+valueToGoStringMessage(this.SourceId, "uint64")+",\n")
+	}
+	if this.SourceAddr != nil {
+		s = append(s, "SourceAddr: "+valueToGoStringMessage(this.SourceAddr, "string")+",\n")
+	}
+	if this.Ttl != nil {
+		s = append(s, "Ttl: "+valueToGoStringMessage(this.Ttl, "uint32")+",\n")
+	}
+	if this.XXX_unrecognized != nil {
+		s = append(s, "XXX_unrecognized:"+fmt.Sprintf("%#v", this.XXX_unrecognized)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Disconnect) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&message.Disconnect{")
+	if this.Id != nil {
+		s = append(s, "Id: "+valueToGoStringMessage(this.Id, "uint64")+",\n")
+	}
+	if this.XXX_unrecognized != nil {
+		s = append(s, "XXX_unrecognized:"+fmt.Sprintf("%#v", this.XXX_unrecognized)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Candidate) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 6)
+	s = append(s, "&message.Candidate{")
+	if this.Id != nil {
+		s = append(s, "Id: "+valueToGoStringMessage(this.Id, "uint64")+",\n")
+	}
+	if this.Addr != nil {
+		s = append(s, "Addr: "+valueToGoStringMessage(this.Addr, "string")+",\n")
+	}
+	if this.XXX_unrecognized != nil {
+		s = append(s, "XXX_unrecognized:"+fmt.Sprintf("%#v", this.XXX_unrecognized)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Shuffle) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 9)
+	s = append(s, "&message.Shuffle{")
+	if this.Id != nil {
+		s = append(s, "Id: "+valueToGoStringMessage(this.Id, "uint64")+",\n")
+	}
+	if this.SourceId != nil {
+		s = append(s, "SourceId: "+valueToGoStringMessage(this.SourceId, "uint64")+",\n")
+	}
+	if this.Addr != nil {
+		s = append(s, "Addr: "+valueToGoStringMessage(this.Addr, "string")+",\n")
+	}
+	if this.Candidates != nil {
+		s = append(s, "Candidates: "+fmt.Sprintf("%#v", this.Candidates)+",\n")
+	}
+	if this.Ttl != nil {
+		s = append(s, "Ttl: "+valueToGoStringMessage(this.Ttl, "uint32")+",\n")
+	}
+	if this.XXX_unrecognized != nil {
+		s = append(s, "XXX_unrecognized:"+fmt.Sprintf("%#v", this.XXX_unrecognized)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *ShuffleReply) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 6)
+	s = append(s, "&message.ShuffleReply{")
+	if this.Id != nil {
+		s = append(s, "Id: "+valueToGoStringMessage(this.Id, "uint64")+",\n")
+	}
+	if this.Candidates != nil {
+		s = append(s, "Candidates: "+fmt.Sprintf("%#v", this.Candidates)+",\n")
+	}
+	if this.XXX_unrecognized != nil {
+		s = append(s, "XXX_unrecognized:"+fmt.Sprintf("%#v", this.XXX_unrecognized)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func valueToGoStringMessage(v interface{}, typ string) string {
+	rv := reflect.ValueOf(v)
+	if rv.IsNil() {
+		return "nil"
+	}
+	pv := reflect.Indirect(rv).Interface()
+	return fmt.Sprintf("func(v %v) *%v { return &v } ( %#v )", typ, typ, pv)
+}
+func (m *UserMessage) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *UserMessage) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.Id == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	} else {
+		dAtA[i] = 0x8
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Id))
+	}
+	if m.Payload != nil {
+		dAtA[i] = 0x12
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(len(m.Payload)))
+		i += copy(dAtA[i:], m.Payload)
+	}
+	if m.Ts == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("ts")
+	} else {
+		dAtA[i] = 0x18
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Ts))
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *Join) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Join) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.Id == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	} else {
+		dAtA[i] = 0x8
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Id))
+	}
+	if m.Addr == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("addr")
+	} else {
+		dAtA[i] = 0x12
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(len(*m.Addr)))
+		i += copy(dAtA[i:], *m.Addr)
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *JoinReply) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *JoinReply) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.Id == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	} else {
+		dAtA[i] = 0x8
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Id))
+	}
+	if m.Accept == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("accept")
+	} else {
+		dAtA[i] = 0x10
+		i++
+		if *m.Accept {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i++
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *Neighbor) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Neighbor) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.Id == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	} else {
+		dAtA[i] = 0x8
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Id))
+	}
+	if m.Addr == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("addr")
+	} else {
+		dAtA[i] = 0x12
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(len(*m.Addr)))
+		i += copy(dAtA[i:], *m.Addr)
+	}
+	if m.Priority == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("priority")
+	} else {
+		dAtA[i] = 0x18
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Priority))
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *NeighborReply) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *NeighborReply) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.Id == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	} else {
+		dAtA[i] = 0x8
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Id))
+	}
+	if m.Accept == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("accept")
+	} else {
+		dAtA[i] = 0x10
+		i++
+		if *m.Accept {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i++
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *ForwardJoin) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ForwardJoin) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.Id == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	} else {
+		dAtA[i] = 0x8
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Id))
+	}
+	if m.SourceId == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("sourceId")
+	} else {
+		dAtA[i] = 0x10
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.SourceId))
+	}
+	if m.SourceAddr == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("sourceAddr")
+	} else {
+		dAtA[i] = 0x1a
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(len(*m.SourceAddr)))
+		i += copy(dAtA[i:], *m.SourceAddr)
+	}
+	if m.Ttl == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("ttl")
+	} else {
+		dAtA[i] = 0x20
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Ttl))
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *Disconnect) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Disconnect) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.Id == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	} else {
+		dAtA[i] = 0x8
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Id))
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *Candidate) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Candidate) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.Id == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	} else {
+		dAtA[i] = 0x8
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Id))
+	}
+	if m.Addr == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("addr")
+	} else {
+		dAtA[i] = 0x12
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(len(*m.Addr)))
+		i += copy(dAtA[i:], *m.Addr)
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *Shuffle) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Shuffle) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.Id == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	} else {
+		dAtA[i] = 0x8
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Id))
+	}
+	if m.SourceId == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("sourceId")
+	} else {
+		dAtA[i] = 0x10
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.SourceId))
+	}
+	if m.Addr == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("addr")
+	} else {
+		dAtA[i] = 0x1a
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(len(*m.Addr)))
+		i += copy(dAtA[i:], *m.Addr)
+	}
+	if len(m.Candidates) > 0 {
+		for _, msg := range m.Candidates {
+			dAtA[i] = 0x22
+			i++
+			i = encodeVarintMessage(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
+			if err != nil {
+				return 0, err
+			}
+			i += n
+		}
+	}
+	if m.Ttl == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("ttl")
+	} else {
+		dAtA[i] = 0x28
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Ttl))
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *ShuffleReply) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ShuffleReply) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.Id == nil {
+		return 0, github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	} else {
+		dAtA[i] = 0x8
+		i++
+		i = encodeVarintMessage(dAtA, i, uint64(*m.Id))
+	}
+	if len(m.Candidates) > 0 {
+		for _, msg := range m.Candidates {
+			dAtA[i] = 0x12
+			i++
+			i = encodeVarintMessage(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
+			if err != nil {
+				return 0, err
+			}
+			i += n
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func encodeFixed64Message(dAtA []byte, offset int, v uint64) int {
+	dAtA[offset] = uint8(v)
+	dAtA[offset+1] = uint8(v >> 8)
+	dAtA[offset+2] = uint8(v >> 16)
+	dAtA[offset+3] = uint8(v >> 24)
+	dAtA[offset+4] = uint8(v >> 32)
+	dAtA[offset+5] = uint8(v >> 40)
+	dAtA[offset+6] = uint8(v >> 48)
+	dAtA[offset+7] = uint8(v >> 56)
+	return offset + 8
+}
+func encodeFixed32Message(dAtA []byte, offset int, v uint32) int {
+	dAtA[offset] = uint8(v)
+	dAtA[offset+1] = uint8(v >> 8)
+	dAtA[offset+2] = uint8(v >> 16)
+	dAtA[offset+3] = uint8(v >> 24)
+	return offset + 4
+}
+func encodeVarintMessage(dAtA []byte, offset int, v uint64) int {
+	for v >= 1<<7 {
+		dAtA[offset] = uint8(v&0x7f | 0x80)
+		v >>= 7
+		offset++
+	}
+	dAtA[offset] = uint8(v)
+	return offset + 1
+}
+func NewPopulatedUserMessage(r randyMessage, easy bool) *UserMessage {
+	this := &UserMessage{}
+	v1 := uint64(uint64(r.Uint32()))
+	this.Id = &v1
+	if r.Intn(10) != 0 {
+		v2 := r.Intn(100)
+		this.Payload = make([]byte, v2)
+		for i := 0; i < v2; i++ {
+			this.Payload[i] = byte(r.Intn(256))
+		}
+	}
+	v3 := int64(r.Int63())
+	if r.Intn(2) == 0 {
+		v3 *= -1
+	}
+	this.Ts = &v3
+	if !easy && r.Intn(10) != 0 {
+		this.XXX_unrecognized = randUnrecognizedMessage(r, 4)
+	}
+	return this
+}
+
+func NewPopulatedJoin(r randyMessage, easy bool) *Join {
+	this := &Join{}
+	v4 := uint64(uint64(r.Uint32()))
+	this.Id = &v4
+	v5 := string(randStringMessage(r))
+	this.Addr = &v5
+	if !easy && r.Intn(10) != 0 {
+		this.XXX_unrecognized = randUnrecognizedMessage(r, 3)
+	}
+	return this
+}
+
+func NewPopulatedJoinReply(r randyMessage, easy bool) *JoinReply {
+	this := &JoinReply{}
+	v6 := uint64(uint64(r.Uint32()))
+	this.Id = &v6
+	v7 := bool(bool(r.Intn(2) == 0))
+	this.Accept = &v7
+	if !easy && r.Intn(10) != 0 {
+		this.XXX_unrecognized = randUnrecognizedMessage(r, 3)
+	}
+	return this
+}
+
+func NewPopulatedNeighbor(r randyMessage, easy bool) *Neighbor {
+	this := &Neighbor{}
+	v8 := uint64(uint64(r.Uint32()))
+	this.Id = &v8
+	v9 := string(randStringMessage(r))
+	this.Addr = &v9
+	v10 := Neighbor_Priority([]int32{0, 1}[r.Intn(2)])
+	this.Priority = &v10
+	if !easy && r.Intn(10) != 0 {
+		this.XXX_unrecognized = randUnrecognizedMessage(r, 4)
+	}
+	return this
+}
+
+func NewPopulatedNeighborReply(r randyMessage, easy bool) *NeighborReply {
+	this := &NeighborReply{}
+	v11 := uint64(uint64(r.Uint32()))
+	this.Id = &v11
+	v12 := bool(bool(r.Intn(2) == 0))
+	this.Accept = &v12
+	if !easy && r.Intn(10) != 0 {
+		this.XXX_unrecognized = randUnrecognizedMessage(r, 3)
+	}
+	return this
+}
+
+func NewPopulatedForwardJoin(r randyMessage, easy bool) *ForwardJoin {
+	this := &ForwardJoin{}
+	v13 := uint64(uint64(r.Uint32()))
+	this.Id = &v13
+	v14 := uint64(uint64(r.Uint32()))
+	this.SourceId = &v14
+	v15 := string(randStringMessage(r))
+	this.SourceAddr = &v15
+	v16 := uint32(r.Uint32())
+	this.Ttl = &v16
+	if !easy && r.Intn(10) != 0 {
+		this.XXX_unrecognized = randUnrecognizedMessage(r, 5)
+	}
+	return this
+}
+
+func NewPopulatedDisconnect(r randyMessage, easy bool) *Disconnect {
+	this := &Disconnect{}
+	v17 := uint64(uint64(r.Uint32()))
+	this.Id = &v17
+	if !easy && r.Intn(10) != 0 {
+		this.XXX_unrecognized = randUnrecognizedMessage(r, 2)
+	}
+	return this
+}
+
+func NewPopulatedCandidate(r randyMessage, easy bool) *Candidate {
+	this := &Candidate{}
+	v18 := uint64(uint64(r.Uint32()))
+	this.Id = &v18
+	v19 := string(randStringMessage(r))
+	this.Addr = &v19
+	if !easy && r.Intn(10) != 0 {
+		this.XXX_unrecognized = randUnrecognizedMessage(r, 3)
+	}
+	return this
+}
+
+func NewPopulatedShuffle(r randyMessage, easy bool) *Shuffle {
+	this := &Shuffle{}
+	v20 := uint64(uint64(r.Uint32()))
+	this.Id = &v20
+	v21 := uint64(uint64(r.Uint32()))
+	this.SourceId = &v21
+	v22 := string(randStringMessage(r))
+	this.Addr = &v22
+	if r.Intn(10) != 0 {
+		v23 := r.Intn(5)
+		this.Candidates = make([]*Candidate, v23)
+		for i := 0; i < v23; i++ {
+			this.Candidates[i] = NewPopulatedCandidate(r, easy)
+		}
+	}
+	v24 := uint32(r.Uint32())
+	this.Ttl = &v24
+	if !easy && r.Intn(10) != 0 {
+		this.XXX_unrecognized = randUnrecognizedMessage(r, 6)
+	}
+	return this
+}
+
+func NewPopulatedShuffleReply(r randyMessage, easy bool) *ShuffleReply {
+	this := &ShuffleReply{}
+	v25 := uint64(uint64(r.Uint32()))
+	this.Id = &v25
+	if r.Intn(10) != 0 {
+		v26 := r.Intn(5)
+		this.Candidates = make([]*Candidate, v26)
+		for i := 0; i < v26; i++ {
+			this.Candidates[i] = NewPopulatedCandidate(r, easy)
+		}
+	}
+	if !easy && r.Intn(10) != 0 {
+		this.XXX_unrecognized = randUnrecognizedMessage(r, 3)
+	}
+	return this
+}
+
+type randyMessage interface {
+	Float32() float32
+	Float64() float64
+	Int63() int64
+	Int31() int32
+	Uint32() uint32
+	Intn(n int) int
+}
+
+func randUTF8RuneMessage(r randyMessage) rune {
+	ru := r.Intn(62)
+	if ru < 10 {
+		return rune(ru + 48)
+	} else if ru < 36 {
+		return rune(ru + 55)
+	}
+	return rune(ru + 61)
+}
+func randStringMessage(r randyMessage) string {
+	v27 := r.Intn(100)
+	tmps := make([]rune, v27)
+	for i := 0; i < v27; i++ {
+		tmps[i] = randUTF8RuneMessage(r)
+	}
+	return string(tmps)
+}
+func randUnrecognizedMessage(r randyMessage, maxFieldNumber int) (dAtA []byte) {
+	l := r.Intn(5)
+	for i := 0; i < l; i++ {
+		wire := r.Intn(4)
+		if wire == 3 {
+			wire = 5
+		}
+		fieldNumber := maxFieldNumber + r.Intn(100)
+		dAtA = randFieldMessage(dAtA, r, fieldNumber, wire)
+	}
+	return dAtA
+}
+func randFieldMessage(dAtA []byte, r randyMessage, fieldNumber int, wire int) []byte {
+	key := uint32(fieldNumber)<<3 | uint32(wire)
+	switch wire {
+	case 0:
+		dAtA = encodeVarintPopulateMessage(dAtA, uint64(key))
+		v28 := r.Int63()
+		if r.Intn(2) == 0 {
+			v28 *= -1
+		}
+		dAtA = encodeVarintPopulateMessage(dAtA, uint64(v28))
+	case 1:
+		dAtA = encodeVarintPopulateMessage(dAtA, uint64(key))
+		dAtA = append(dAtA, byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)))
+	case 2:
+		dAtA = encodeVarintPopulateMessage(dAtA, uint64(key))
+		ll := r.Intn(100)
+		dAtA = encodeVarintPopulateMessage(dAtA, uint64(ll))
+		for j := 0; j < ll; j++ {
+			dAtA = append(dAtA, byte(r.Intn(256)))
+		}
+	default:
+		dAtA = encodeVarintPopulateMessage(dAtA, uint64(key))
+		dAtA = append(dAtA, byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)))
+	}
+	return dAtA
+}
+func encodeVarintPopulateMessage(dAtA []byte, v uint64) []byte {
+	for v >= 1<<7 {
+		dAtA = append(dAtA, uint8(uint64(v)&0x7f|0x80))
+		v >>= 7
+	}
+	dAtA = append(dAtA, uint8(v))
+	return dAtA
+}
+func (m *UserMessage) Size() (n int) {
+	var l int
+	_ = l
+	if m.Id != nil {
+		n += 1 + sovMessage(uint64(*m.Id))
+	}
+	if m.Payload != nil {
+		l = len(m.Payload)
+		n += 1 + l + sovMessage(uint64(l))
+	}
+	if m.Ts != nil {
+		n += 1 + sovMessage(uint64(*m.Ts))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *Join) Size() (n int) {
+	var l int
+	_ = l
+	if m.Id != nil {
+		n += 1 + sovMessage(uint64(*m.Id))
+	}
+	if m.Addr != nil {
+		l = len(*m.Addr)
+		n += 1 + l + sovMessage(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *JoinReply) Size() (n int) {
+	var l int
+	_ = l
+	if m.Id != nil {
+		n += 1 + sovMessage(uint64(*m.Id))
+	}
+	if m.Accept != nil {
+		n += 2
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *Neighbor) Size() (n int) {
+	var l int
+	_ = l
+	if m.Id != nil {
+		n += 1 + sovMessage(uint64(*m.Id))
+	}
+	if m.Addr != nil {
+		l = len(*m.Addr)
+		n += 1 + l + sovMessage(uint64(l))
+	}
+	if m.Priority != nil {
+		n += 1 + sovMessage(uint64(*m.Priority))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *NeighborReply) Size() (n int) {
+	var l int
+	_ = l
+	if m.Id != nil {
+		n += 1 + sovMessage(uint64(*m.Id))
+	}
+	if m.Accept != nil {
+		n += 2
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *ForwardJoin) Size() (n int) {
+	var l int
+	_ = l
+	if m.Id != nil {
+		n += 1 + sovMessage(uint64(*m.Id))
+	}
+	if m.SourceId != nil {
+		n += 1 + sovMessage(uint64(*m.SourceId))
+	}
+	if m.SourceAddr != nil {
+		l = len(*m.SourceAddr)
+		n += 1 + l + sovMessage(uint64(l))
+	}
+	if m.Ttl != nil {
+		n += 1 + sovMessage(uint64(*m.Ttl))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *Disconnect) Size() (n int) {
+	var l int
+	_ = l
+	if m.Id != nil {
+		n += 1 + sovMessage(uint64(*m.Id))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *Candidate) Size() (n int) {
+	var l int
+	_ = l
+	if m.Id != nil {
+		n += 1 + sovMessage(uint64(*m.Id))
+	}
+	if m.Addr != nil {
+		l = len(*m.Addr)
+		n += 1 + l + sovMessage(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *Shuffle) Size() (n int) {
+	var l int
+	_ = l
+	if m.Id != nil {
+		n += 1 + sovMessage(uint64(*m.Id))
+	}
+	if m.SourceId != nil {
+		n += 1 + sovMessage(uint64(*m.SourceId))
+	}
+	if m.Addr != nil {
+		l = len(*m.Addr)
+		n += 1 + l + sovMessage(uint64(l))
+	}
+	if len(m.Candidates) > 0 {
+		for _, e := range m.Candidates {
+			l = e.Size()
+			n += 1 + l + sovMessage(uint64(l))
+		}
+	}
+	if m.Ttl != nil {
+		n += 1 + sovMessage(uint64(*m.Ttl))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *ShuffleReply) Size() (n int) {
+	var l int
+	_ = l
+	if m.Id != nil {
+		n += 1 + sovMessage(uint64(*m.Id))
+	}
+	if len(m.Candidates) > 0 {
+		for _, e := range m.Candidates {
+			l = e.Size()
+			n += 1 + l + sovMessage(uint64(l))
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func sovMessage(x uint64) (n int) {
+	for {
+		n++
+		x >>= 7
+		if x == 0 {
+			break
+		}
+	}
+	return n
+}
+func sozMessage(x uint64) (n int) {
+	return sovMessage(uint64((x << 1) ^ uint64((int64(x) >> 63))))
+}
+func (this *UserMessage) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&UserMessage{`,
+		`Id:` + valueToStringMessage(this.Id) + `,`,
+		`Payload:` + valueToStringMessage(this.Payload) + `,`,
+		`Ts:` + valueToStringMessage(this.Ts) + `,`,
+		`XXX_unrecognized:` + fmt.Sprintf("%v", this.XXX_unrecognized) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Join) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&Join{`,
+		`Id:` + valueToStringMessage(this.Id) + `,`,
+		`Addr:` + valueToStringMessage(this.Addr) + `,`,
+		`XXX_unrecognized:` + fmt.Sprintf("%v", this.XXX_unrecognized) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *JoinReply) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&JoinReply{`,
+		`Id:` + valueToStringMessage(this.Id) + `,`,
+		`Accept:` + valueToStringMessage(this.Accept) + `,`,
+		`XXX_unrecognized:` + fmt.Sprintf("%v", this.XXX_unrecognized) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Neighbor) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&Neighbor{`,
+		`Id:` + valueToStringMessage(this.Id) + `,`,
+		`Addr:` + valueToStringMessage(this.Addr) + `,`,
+		`Priority:` + valueToStringMessage(this.Priority) + `,`,
+		`XXX_unrecognized:` + fmt.Sprintf("%v", this.XXX_unrecognized) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *NeighborReply) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&NeighborReply{`,
+		`Id:` + valueToStringMessage(this.Id) + `,`,
+		`Accept:` + valueToStringMessage(this.Accept) + `,`,
+		`XXX_unrecognized:` + fmt.Sprintf("%v", this.XXX_unrecognized) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *ForwardJoin) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&ForwardJoin{`,
+		`Id:` + valueToStringMessage(this.Id) + `,`,
+		`SourceId:` + valueToStringMessage(this.SourceId) + `,`,
+		`SourceAddr:` + valueToStringMessage(this.SourceAddr) + `,`,
+		`Ttl:` + valueToStringMessage(this.Ttl) + `,`,
+		`XXX_unrecognized:` + fmt.Sprintf("%v", this.XXX_unrecognized) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Disconnect) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&Disconnect{`,
+		`Id:` + valueToStringMessage(this.Id) + `,`,
+		`XXX_unrecognized:` + fmt.Sprintf("%v", this.XXX_unrecognized) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Candidate) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&Candidate{`,
+		`Id:` + valueToStringMessage(this.Id) + `,`,
+		`Addr:` + valueToStringMessage(this.Addr) + `,`,
+		`XXX_unrecognized:` + fmt.Sprintf("%v", this.XXX_unrecognized) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Shuffle) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&Shuffle{`,
+		`Id:` + valueToStringMessage(this.Id) + `,`,
+		`SourceId:` + valueToStringMessage(this.SourceId) + `,`,
+		`Addr:` + valueToStringMessage(this.Addr) + `,`,
+		`Candidates:` + strings.Replace(fmt.Sprintf("%v", this.Candidates), "Candidate", "Candidate", 1) + `,`,
+		`Ttl:` + valueToStringMessage(this.Ttl) + `,`,
+		`XXX_unrecognized:` + fmt.Sprintf("%v", this.XXX_unrecognized) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *ShuffleReply) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&ShuffleReply{`,
+		`Id:` + valueToStringMessage(this.Id) + `,`,
+		`Candidates:` + strings.Replace(fmt.Sprintf("%v", this.Candidates), "Candidate", "Candidate", 1) + `,`,
+		`XXX_unrecognized:` + fmt.Sprintf("%v", this.XXX_unrecognized) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func valueToStringMessage(v interface{}) string {
+	rv := reflect.ValueOf(v)
+	if rv.IsNil() {
+		return "nil"
+	}
+	pv := reflect.Indirect(rv).Interface()
+	return fmt.Sprintf("*%v", pv)
+}
+func (m *UserMessage) Unmarshal(dAtA []byte) error {
+	var hasFields [1]uint64
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowMessage
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: UserMessage: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: UserMessage: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Id = &v
+			hasFields[0] |= uint64(0x00000001)
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Payload", wireType)
+			}
+			var byteLen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				byteLen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if byteLen < 0 {
+				return ErrInvalidLengthMessage
+			}
+			postIndex := iNdEx + byteLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Payload = append(m.Payload[:0], dAtA[iNdEx:postIndex]...)
+			if m.Payload == nil {
+				m.Payload = []byte{}
+			}
+			iNdEx = postIndex
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Ts", wireType)
+			}
+			var v int64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (int64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Ts = &v
+			hasFields[0] |= uint64(0x00000002)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipMessage(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthMessage
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+	if hasFields[0]&uint64(0x00000001) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	}
+	if hasFields[0]&uint64(0x00000002) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("ts")
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Join) Unmarshal(dAtA []byte) error {
+	var hasFields [1]uint64
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowMessage
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Join: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Join: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Id = &v
+			hasFields[0] |= uint64(0x00000001)
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Addr", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthMessage
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			s := string(dAtA[iNdEx:postIndex])
+			m.Addr = &s
+			iNdEx = postIndex
+			hasFields[0] |= uint64(0x00000002)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipMessage(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthMessage
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+	if hasFields[0]&uint64(0x00000001) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	}
+	if hasFields[0]&uint64(0x00000002) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("addr")
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *JoinReply) Unmarshal(dAtA []byte) error {
+	var hasFields [1]uint64
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowMessage
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: JoinReply: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: JoinReply: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Id = &v
+			hasFields[0] |= uint64(0x00000001)
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Accept", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			b := bool(v != 0)
+			m.Accept = &b
+			hasFields[0] |= uint64(0x00000002)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipMessage(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthMessage
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+	if hasFields[0]&uint64(0x00000001) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	}
+	if hasFields[0]&uint64(0x00000002) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("accept")
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Neighbor) Unmarshal(dAtA []byte) error {
+	var hasFields [1]uint64
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowMessage
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Neighbor: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Neighbor: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Id = &v
+			hasFields[0] |= uint64(0x00000001)
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Addr", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthMessage
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			s := string(dAtA[iNdEx:postIndex])
+			m.Addr = &s
+			iNdEx = postIndex
+			hasFields[0] |= uint64(0x00000002)
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Priority", wireType)
+			}
+			var v Neighbor_Priority
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (Neighbor_Priority(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Priority = &v
+			hasFields[0] |= uint64(0x00000004)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipMessage(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthMessage
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+	if hasFields[0]&uint64(0x00000001) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	}
+	if hasFields[0]&uint64(0x00000002) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("addr")
+	}
+	if hasFields[0]&uint64(0x00000004) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("priority")
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *NeighborReply) Unmarshal(dAtA []byte) error {
+	var hasFields [1]uint64
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowMessage
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: NeighborReply: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: NeighborReply: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Id = &v
+			hasFields[0] |= uint64(0x00000001)
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Accept", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			b := bool(v != 0)
+			m.Accept = &b
+			hasFields[0] |= uint64(0x00000002)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipMessage(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthMessage
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+	if hasFields[0]&uint64(0x00000001) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	}
+	if hasFields[0]&uint64(0x00000002) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("accept")
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ForwardJoin) Unmarshal(dAtA []byte) error {
+	var hasFields [1]uint64
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowMessage
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ForwardJoin: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ForwardJoin: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Id = &v
+			hasFields[0] |= uint64(0x00000001)
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SourceId", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.SourceId = &v
+			hasFields[0] |= uint64(0x00000002)
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SourceAddr", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthMessage
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			s := string(dAtA[iNdEx:postIndex])
+			m.SourceAddr = &s
+			iNdEx = postIndex
+			hasFields[0] |= uint64(0x00000004)
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Ttl", wireType)
+			}
+			var v uint32
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint32(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Ttl = &v
+			hasFields[0] |= uint64(0x00000008)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipMessage(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthMessage
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+	if hasFields[0]&uint64(0x00000001) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	}
+	if hasFields[0]&uint64(0x00000002) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("sourceId")
+	}
+	if hasFields[0]&uint64(0x00000004) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("sourceAddr")
+	}
+	if hasFields[0]&uint64(0x00000008) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("ttl")
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Disconnect) Unmarshal(dAtA []byte) error {
+	var hasFields [1]uint64
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowMessage
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Disconnect: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Disconnect: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Id = &v
+			hasFields[0] |= uint64(0x00000001)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipMessage(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthMessage
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+	if hasFields[0]&uint64(0x00000001) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Candidate) Unmarshal(dAtA []byte) error {
+	var hasFields [1]uint64
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowMessage
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Candidate: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Candidate: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Id = &v
+			hasFields[0] |= uint64(0x00000001)
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Addr", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthMessage
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			s := string(dAtA[iNdEx:postIndex])
+			m.Addr = &s
+			iNdEx = postIndex
+			hasFields[0] |= uint64(0x00000002)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipMessage(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthMessage
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+	if hasFields[0]&uint64(0x00000001) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	}
+	if hasFields[0]&uint64(0x00000002) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("addr")
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Shuffle) Unmarshal(dAtA []byte) error {
+	var hasFields [1]uint64
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowMessage
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Shuffle: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Shuffle: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Id = &v
+			hasFields[0] |= uint64(0x00000001)
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SourceId", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.SourceId = &v
+			hasFields[0] |= uint64(0x00000002)
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Addr", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthMessage
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			s := string(dAtA[iNdEx:postIndex])
+			m.Addr = &s
+			iNdEx = postIndex
+			hasFields[0] |= uint64(0x00000004)
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Candidates", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthMessage
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Candidates = append(m.Candidates, &Candidate{})
+			if err := m.Candidates[len(m.Candidates)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 5:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Ttl", wireType)
+			}
+			var v uint32
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint32(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Ttl = &v
+			hasFields[0] |= uint64(0x00000008)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipMessage(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthMessage
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+	if hasFields[0]&uint64(0x00000001) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	}
+	if hasFields[0]&uint64(0x00000002) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("sourceId")
+	}
+	if hasFields[0]&uint64(0x00000004) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("addr")
+	}
+	if hasFields[0]&uint64(0x00000008) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("ttl")
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ShuffleReply) Unmarshal(dAtA []byte) error {
+	var hasFields [1]uint64
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowMessage
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ShuffleReply: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ShuffleReply: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Id = &v
+			hasFields[0] |= uint64(0x00000001)
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Candidates", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthMessage
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Candidates = append(m.Candidates, &Candidate{})
+			if err := m.Candidates[len(m.Candidates)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipMessage(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthMessage
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+	if hasFields[0]&uint64(0x00000001) == 0 {
+		return github_com_gogo_protobuf_proto.NewRequiredNotSetError("id")
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func skipMessage(dAtA []byte) (n int, err error) {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return 0, ErrIntOverflowMessage
+			}
+			if iNdEx >= l {
+				return 0, io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		wireType := int(wire & 0x7)
+		switch wireType {
+		case 0:
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return 0, ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return 0, io.ErrUnexpectedEOF
+				}
+				iNdEx++
+				if dAtA[iNdEx-1] < 0x80 {
+					break
+				}
+			}
+			return iNdEx, nil
+		case 1:
+			iNdEx += 8
+			return iNdEx, nil
+		case 2:
+			var length int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return 0, ErrIntOverflowMessage
+				}
+				if iNdEx >= l {
+					return 0, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				length |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			iNdEx += length
+			if length < 0 {
+				return 0, ErrInvalidLengthMessage
+			}
+			return iNdEx, nil
+		case 3:
+			for {
+				var innerWire uint64
+				var start int = iNdEx
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return 0, ErrIntOverflowMessage
+					}
+					if iNdEx >= l {
+						return 0, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					innerWire |= (uint64(b) & 0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				innerWireType := int(innerWire & 0x7)
+				if innerWireType == 4 {
+					break
+				}
+				next, err := skipMessage(dAtA[start:])
+				if err != nil {
+					return 0, err
+				}
+				iNdEx = start + next
+			}
+			return iNdEx, nil
+		case 4:
+			return iNdEx, nil
+		case 5:
+			iNdEx += 4
+			return iNdEx, nil
+		default:
+			return 0, fmt.Errorf("proto: illegal wireType %d", wireType)
+		}
+	}
+	panic("unreachable")
+}
+
+var (
+	ErrInvalidLengthMessage = fmt.Errorf("proto: negative length found during unmarshaling")
+	ErrIntOverflowMessage   = fmt.Errorf("proto: integer overflow")
+)
+
+func init() { proto.RegisterFile("message.proto", fileDescriptorMessage) }
+
+var fileDescriptorMessage = []byte{
+	// 445 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x94, 0x51, 0x3d, 0x8f, 0x13, 0x31,
+	0x10, 0x3d, 0x7b, 0x17, 0xb2, 0x99, 0x5c, 0x4e, 0x91, 0x0b, 0xb4, 0x8a, 0xc0, 0x5a, 0x6d, 0xb5,
+	0x42, 0x90, 0x48, 0x41, 0x82, 0x9a, 0x0f, 0xf1, 0x25, 0x40, 0xc8, 0x88, 0x1f, 0xe0, 0xac, 0x9d,
+	0x8d, 0x45, 0x2e, 0x5e, 0xd9, 0x8e, 0x4e, 0xe9, 0x68, 0xa8, 0xf9, 0x1b, 0xfc, 0x04, 0x4a, 0x4a,
+	0x4a, 0x4a, 0xca, 0xcb, 0xfe, 0x02, 0x4a, 0x4a, 0x14, 0x27, 0x0e, 0x81, 0xbb, 0x22, 0xd7, 0xcd,
+	0xb3, 0xdf, 0x9b, 0x37, 0x6f, 0x06, 0xba, 0xa7, 0xd2, 0x5a, 0x5e, 0xc9, 0x41, 0x6d, 0xb4, 0xd3,
+	0xa4, 0xb5, 0x85, 0xfd, 0xbb, 0x95, 0x72, 0xd3, 0xc5, 0x78, 0x50, 0xea, 0xd3, 0x61, 0xa5, 0x2b,
+	0x3d, 0xf4, 0xff, 0xe3, 0xc5, 0xc4, 0x23, 0x0f, 0x7c, 0xb5, 0xd1, 0xe5, 0xcf, 0xa0, 0xf3, 0xde,
+	0x4a, 0xf3, 0x7a, 0xa3, 0x26, 0x27, 0x80, 0x95, 0x48, 0x51, 0x86, 0x8b, 0x98, 0x61, 0x25, 0x48,
+	0x0a, 0xad, 0x9a, 0x2f, 0x67, 0x9a, 0x8b, 0x14, 0x67, 0xa8, 0x38, 0x66, 0x01, 0xae, 0x99, 0xce,
+	0xa6, 0x51, 0x86, 0x8b, 0x88, 0x61, 0x67, 0xf3, 0xdb, 0x10, 0xbf, 0xd4, 0x6a, 0x7e, 0xa1, 0x03,
+	0x81, 0x98, 0x0b, 0x61, 0x52, 0x9c, 0xe1, 0xa2, 0xcd, 0x7c, 0x9d, 0xdf, 0x83, 0xf6, 0x9a, 0xcb,
+	0x64, 0x3d, 0x5b, 0x5e, 0x10, 0xdc, 0x80, 0xeb, 0xbc, 0x2c, 0x65, 0xed, 0xbc, 0x24, 0x61, 0x5b,
+	0x94, 0x7f, 0x42, 0x90, 0xbc, 0x91, 0xaa, 0x9a, 0x8e, 0xb5, 0x39, 0xc4, 0x85, 0xdc, 0x87, 0xa4,
+	0x36, 0x4a, 0x1b, 0xe5, 0x96, 0x7e, 0xce, 0x93, 0x51, 0x7f, 0x10, 0x96, 0x16, 0x1a, 0x0d, 0xde,
+	0x6e, 0x19, 0x6c, 0xc7, 0xcd, 0x6f, 0x41, 0x12, 0x5e, 0x49, 0x0b, 0xa2, 0x57, 0xfa, 0xac, 0x77,
+	0x44, 0x12, 0x88, 0x9f, 0xab, 0x6a, 0xda, 0x43, 0xf9, 0x03, 0xe8, 0x06, 0xf5, 0xd5, 0x02, 0x7c,
+	0x80, 0xce, 0x53, 0x6d, 0xce, 0xb8, 0x11, 0x97, 0x2e, 0xaa, 0x0f, 0x89, 0xd5, 0x0b, 0x53, 0xca,
+	0x17, 0xc2, 0x0b, 0x63, 0xb6, 0xc3, 0x84, 0x02, 0x6c, 0xea, 0x87, 0xeb, 0x90, 0x91, 0x0f, 0xb9,
+	0xf7, 0x42, 0x7a, 0x10, 0x39, 0x37, 0x4b, 0xe3, 0x0c, 0x17, 0x5d, 0xb6, 0x2e, 0xf3, 0x9b, 0x00,
+	0x4f, 0x94, 0x2d, 0xf5, 0x7c, 0x2e, 0x4b, 0xf7, 0xbf, 0x57, 0x3e, 0x84, 0xf6, 0x63, 0x3e, 0x17,
+	0x4a, 0x70, 0x27, 0x0f, 0xba, 0xd8, 0x67, 0x04, 0xad, 0x77, 0xd3, 0xc5, 0x64, 0x32, 0x93, 0x57,
+	0x1a, 0x3c, 0xf4, 0x8a, 0xf6, 0xee, 0x32, 0x02, 0x28, 0x83, 0xb9, 0x4d, 0xe3, 0x2c, 0x2a, 0x3a,
+	0x23, 0xb2, 0xbb, 0xcc, 0x6e, 0x2e, 0xb6, 0xc7, 0x0a, 0x01, 0xaf, 0xfd, 0x0d, 0xc8, 0xe0, 0x78,
+	0x3b, 0xd0, 0xe5, 0x57, 0xf8, 0xd7, 0x05, 0x1f, 0xe2, 0xf2, 0xe8, 0xce, 0xcf, 0x15, 0x3d, 0x3a,
+	0x5f, 0x51, 0xf4, 0x6b, 0x45, 0xd1, 0xef, 0x15, 0x45, 0x1f, 0x1b, 0x8a, 0xbe, 0x34, 0x14, 0x7d,
+	0x6d, 0x28, 0xfa, 0xd6, 0x50, 0xf4, 0xbd, 0xa1, 0xe8, 0x47, 0x43, 0xd1, 0x79, 0x43, 0xd1, 0x9f,
+	0x00, 0x00, 0x00, 0xff, 0xff, 0xdb, 0x24, 0xfc, 0x93, 0x82, 0x03, 0x00, 0x00,
 }

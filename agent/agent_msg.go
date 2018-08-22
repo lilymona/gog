@@ -7,7 +7,7 @@ import (
 	"github.com/go-distributed/gog/message"
 	"github.com/go-distributed/gog/node"
 
-	"code.google.com/p/gogoprotobuf/proto"
+	"github.com/gogo/protobuf/proto"
 )
 
 var (

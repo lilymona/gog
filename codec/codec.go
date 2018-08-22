@@ -9,7 +9,7 @@ import (
 	"net"
 	"reflect"
 
-	"code.google.com/p/gogoprotobuf/proto"
+	"github.com/gogo/protobuf/proto"
 
 	log "github.com/go-distributed/gog/log" // DEBUG
 )

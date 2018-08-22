@@ -6,9 +6,9 @@ import (
 	"math/rand"
 	"testing"
 
-	"code.google.com/p/gogoprotobuf/proto"
 	"github.com/go-distributed/gog/message"
 	"github.com/go-distributed/testify/assert"
+	"github.com/gogo/protobuf/proto"
 )
 
 const nsInOneSecond = 1000000000 // 10^9

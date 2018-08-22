@@ -11,11 +11,10 @@ import (
 	"github.com/go-distributed/gog/arraymap"
 	"github.com/go-distributed/gog/codec"
 	"github.com/go-distributed/gog/config"
+	log "github.com/go-distributed/gog/log"
 	"github.com/go-distributed/gog/message"
 	"github.com/go-distributed/gog/node"
-
-	"code.google.com/p/gogoprotobuf/proto"
-	log "github.com/go-distributed/gog/log"
+	"github.com/gogo/protobuf/proto"
 )
 
 // MessageHandler is the message handler.
