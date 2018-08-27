@@ -11,7 +11,7 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 
-	log "github.com/go-distributed/gog/log" // DEBUG
+	log "github.com/lilymona/gog/logging" // DEBUG
 )
 
 const (

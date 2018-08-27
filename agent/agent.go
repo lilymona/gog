@@ -8,13 +8,13 @@ import (
 	"os"
 	"time"
 
-	"github.com/go-distributed/gog/arraymap"
-	"github.com/go-distributed/gog/codec"
-	"github.com/go-distributed/gog/config"
-	log "github.com/go-distributed/gog/log"
-	"github.com/go-distributed/gog/message"
-	"github.com/go-distributed/gog/node"
 	"github.com/gogo/protobuf/proto"
+	"github.com/lilymona/gog/arraymap"
+	"github.com/lilymona/gog/codec"
+	"github.com/lilymona/gog/config"
+	log "github.com/lilymona/gog/logging"
+	"github.com/lilymona/gog/message"
+	"github.com/lilymona/gog/node"
 )
 
 // MessageHandler is the message handler.
@@ -137,7 +137,7 @@ func (ag *agent) serveConn(conn *net.TCPConn, node *node.Node) {
 	for {
 		msg, err := ag.codec.ReadMsg(conn)
 		if err != nil {
-			//log.Errorf("Agent.serveConn(): Failed to decode message: %v\n", err)
+			log.Errorf("Agent.serveConn(): Failed to decode message: %v\n", err)
 			ag.replaceActiveNode(node)
 			return
 		}
@@ -469,8 +469,10 @@ func (ag *agent) handleShuffle(msg *message.Shuffle) {
 	ttl := msg.GetTtl()
 	if ttl > 0 && ag.pView.Len() > 1 {
 		node := chooseRandomNode(ag.aView, msg.GetId())
-		msg.Ttl = proto.Uint32(ttl - 1)
-		go ag.forwardShuffle(node, msg)
+		if node != nil {
+			msg.Ttl = proto.Uint32(ttl - 1)
+			go ag.forwardShuffle(node, msg)
+		}
 		return
 	}
 	candidates := msg.GetCandidates()
@@ -509,11 +511,7 @@ func (ag *agent) handleShuffleReply(msg *message.ShuffleReply) {
 // to the nodes in its active view.
 func (ag *agent) handleUserMessage(msg *message.UserMessage) {
 	// Test if the message is stale.
-	ms, err := time.ParseDuration("1ms")
-	if err != nil {
-		panic("failed to parse duration") // Shouldn't happen.
-	}
-	deadline := msg.GetTs() + ms.Nanoseconds()*int64(ag.cfg.MLife)
+	deadline := msg.GetTs() + time.Millisecond.Nanoseconds()*int64(ag.cfg.MLife)
 	now := time.Now().UnixNano()
 	if now >= deadline {
 		log.Debugf("Message is too old, deadline: %v, now %v\n", deadline, now)
@@ -535,7 +533,7 @@ func (ag *agent) handleUserMessage(msg *message.UserMessage) {
 		ag.msgBuffer.Remove(hash)
 	}
 
-	purgeDeadline := now + ms.Nanoseconds()*int64(ag.cfg.PurgeDuration)
+	purgeDeadline := now + time.Millisecond.Nanoseconds()*int64(ag.cfg.PurgeDuration)
 	ag.msgBuffer.Append(hash, purgeDeadline)
 
 	// Invoke user's message handler.

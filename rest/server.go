@@ -9,9 +9,9 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/go-distributed/gog/agent"
-	"github.com/go-distributed/gog/config"
-	log "github.com/go-distributed/gog/log"
+	"github.com/lilymona/gog/agent"
+	"github.com/lilymona/gog/config"
+	log "github.com/lilymona/gog/logging"
 )
 
 const (

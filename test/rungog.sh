@@ -12,7 +12,7 @@ interface=eth0
 ipaddr=$(ifconfig $interface | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
 echo $ipaddr
 
-rootpath=$gopath/src/github.com/go-distributed/gog
+rootpath=$gopath/src/github.com/lilymona/gog
 logpath=$rootpath/test/log
 
 userscript=$rootpath/test/query_handler.sh

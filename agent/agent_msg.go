@@ -4,8 +4,8 @@ import (
 	"errors"
 	"net"
 
-	"github.com/go-distributed/gog/message"
-	"github.com/go-distributed/gog/node"
+	"github.com/lilymona/gog/message"
+	"github.com/lilymona/gog/node"
 
 	"github.com/gogo/protobuf/proto"
 )

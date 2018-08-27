@@ -3,7 +3,7 @@ package arraymap
 import (
 	"testing"
 
-	"github.com/go-distributed/testify/assert"
+	"github.com/lilymona/testify/assert"
 )
 
 func TestSimple(t *testing.T) {

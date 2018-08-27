@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/go-distributed/gog/config"
-	"github.com/go-distributed/gog/log"
-	"github.com/go-distributed/gog/rest"
+	"github.com/lilymona/gog/config"
+	log "github.com/lilymona/gog/logging"
+	"github.com/lilymona/gog/rest"
 )
 
 func main() {

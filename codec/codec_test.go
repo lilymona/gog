@@ -6,9 +6,9 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/go-distributed/gog/message"
-	"github.com/go-distributed/testify/assert"
 	"github.com/gogo/protobuf/proto"
+	"github.com/lilymona/gog/message"
+	"github.com/lilymona/testify/assert"
 )
 
 const nsInOneSecond = 1000000000 // 10^9
