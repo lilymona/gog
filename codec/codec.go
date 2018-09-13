@@ -8,6 +8,7 @@ import (
 	"io"
 	"net"
 	"reflect"
+	"runtime/debug"
 
 	"github.com/gogo/protobuf/proto"
 
@@ -78,7 +79,7 @@ func (pc *ProtobufCodec) WriteMsg(msg proto.Message, w io.Writer) error {
 	if !existed {
 		return ErrMessageNotRegistered
 	}
-	buf := new(bytes.Buffer)
+	buf := bytes.NewBuffer([]byte{0xab, 0xcd})
 
 	// Encode.
 	b, err := proto.Marshal(msg)
@@ -103,14 +104,22 @@ func (pc *ProtobufCodec) WriteMsg(msg proto.Message, w io.Writer) error {
 
 // ReadMsg reads bytes from an io.Reader and decode it to a message.
 func (pc *ProtobufCodec) ReadMsg(r io.Reader) (msg proto.Message, err error) {
-	var length int32
+	var length uint32
 
 	defer func() {
 		if fatal := recover(); fatal != nil {
 			err = fmt.Errorf("Recovery from panic: %v", fatal)
 			log.Errorf(err.Error())
+			debug.PrintStack()
 		}
 	}()
+
+	magic := make([]byte, 2)
+	if _, err = r.Read(magic); err != nil {
+		return nil, err
+	} else if !(magic[0] == 0xab && magic[1] == 0xcd) {
+		return nil, fmt.Errorf("magic number unmatch")
+	}
 
 	// Read the length.
 	if err = binary.Read(r, binary.LittleEndian, &length); err != nil {

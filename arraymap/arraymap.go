@@ -24,13 +24,16 @@ func (a *ArrayMap) Len() int {
 	return len(a.keys)
 }
 
-func (a *ArrayMap) Append(key, value interface{}) {
-	if _, existed := a.positions[key]; existed {
+func (a *ArrayMap) Add(key, value interface{}) (oldValue interface{}) {
+	if p, existed := a.positions[key]; existed {
+		oldValue = a.values[p]
+		a.values[p] = value
 		return
 	}
 	a.keys = append(a.keys, key)
 	a.values = append(a.values, value)
 	a.positions[key] = len(a.keys) - 1
+	return
 }
 
 func (a *ArrayMap) GetKeyAt(i int) interface{} {
@@ -50,7 +53,7 @@ func (a *ArrayMap) Has(key interface{}) bool {
 	return existed
 }
 
-func (a *ArrayMap) RemoveAt(i int) {
+func (a *ArrayMap) removeAt(i int) {
 	removingKey, lastKey := a.keys[i], a.keys[len(a.keys)-1]
 	// Swap the removing item and the last.
 	a.keys[i], a.keys[len(a.keys)-1] = a.keys[len(a.keys)-1], a.keys[i]
@@ -65,10 +68,12 @@ func (a *ArrayMap) RemoveAt(i int) {
 	delete(a.positions, removingKey)
 }
 
-func (a *ArrayMap) Remove(key interface{}) {
-	if _, exisited := a.positions[key]; exisited {
-		a.RemoveAt(a.positions[key])
+func (a *ArrayMap) Remove(key interface{}) bool {
+	if p, exisited := a.positions[key]; exisited {
+		a.removeAt(p)
+		return true
 	}
+	return false
 }
 
 func (a *ArrayMap) RemoveAll() {

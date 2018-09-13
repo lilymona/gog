@@ -2,8 +2,8 @@ package agent
 
 import (
 	"errors"
-	"net"
 
+	log "github.com/lilymona/gog/logging"
 	"github.com/lilymona/gog/message"
 	"github.com/lilymona/gog/node"
 
@@ -38,108 +38,39 @@ func (ag *agent) forwardJoin(node, newNode *node.Node, ttl uint32) {
 	}
 }
 
-// rejectNeighbor() sends a the NeighborReply with accept = false.
-func (ag *agent) rejectNeighbor(node *node.Node) {
-	msg := &message.NeighborReply{
-		Id:     proto.Uint64(ag.id),
-		Accept: proto.Bool(false),
-	}
-	if err := ag.codec.WriteMsg(msg, node.Conn); err != nil {
-		// TODO log
-	}
-}
-
-// acceptNeighbor() sends a the NeighborReply with accept = true.
-func (ag *agent) acceptNeighbor(node *node.Node) {
-	msg := &message.NeighborReply{
-		Id:     proto.Uint64(ag.id),
-		Accept: proto.Bool(true),
-	}
-	if err := ag.codec.WriteMsg(msg, node.Conn); err != nil {
-		node.Conn.Close()
-	}
-}
-
+// join() sends a Join message, and wait for the reply.
 func (ag *agent) join(node *node.Node) (bool, error) {
 	msg := &message.Join{
 		Id:   proto.Uint64(ag.id),
 		Addr: proto.String(ag.cfg.AddrStr),
 	}
 	if err := ag.codec.WriteMsg(msg, node.Conn); err != nil {
-		node.Conn.Close()
 		return false, err
 	}
 	recvMsg, err := ag.codec.ReadMsg(node.Conn)
 	if err != nil {
 		// TODO(yifan) log.
-		node.Conn.Close()
 		return false, err
 	}
 	reply, ok := recvMsg.(*message.JoinReply)
 	if !ok {
-		node.Conn.Close()
 		return false, ErrInvalidMessageType
 	}
-	id, accepted := reply.GetId(), reply.GetAccept()
-	node.Id = id
-
-	if accepted {
-		ag.aView.Lock()
-		ag.pView.Lock()
-		defer ag.aView.Unlock()
-		defer ag.pView.Unlock()
-
-		ag.addNodeActiveView(node)
-		go ag.serveConn(node.Conn, node)
-	}
-	return accepted, nil
+	node.Id = reply.GetId()
+	return reply.GetAccept(), nil
 }
 
-func (ag *agent) acceptJoin(node *node.Node) error {
+// replyJoin() sends a the JoinReply message to the node.
+func (ag *agent) replyJoin(node *node.Node, accept bool) error {
 	msg := &message.JoinReply{
 		Id:     proto.Uint64(ag.id),
-		Accept: proto.Bool(true),
+		Accept: proto.Bool(accept),
 	}
-	if err := ag.codec.WriteMsg(msg, node.Conn); err != nil {
-		node.Conn.Close()
-		return err
-	}
-	return nil
-}
-
-func (ag *agent) rejectJoin(node *node.Node) error {
-	defer node.Conn.Close()
-	msg := &message.JoinReply{
-		Id:     proto.Uint64(ag.id),
-		Accept: proto.Bool(false),
-	}
-
-	if err := ag.codec.WriteMsg(msg, node.Conn); err != nil {
-		return err
-	}
-	return nil
+	return ag.codec.WriteMsg(msg, node.Conn)
 }
 
 // neighbor() sends a Neighbor message, and wait for the reply.
-// If the other side accepts the request, we add the node to the active view.
 func (ag *agent) neighbor(node *node.Node, priority message.Neighbor_Priority) (bool, error) {
-	ag.aView.Unlock()
-	ag.pView.Unlock()
-	defer ag.aView.Lock()
-	defer ag.pView.Lock()
-
-	addr, err := net.ResolveTCPAddr(ag.cfg.Net, node.Addr)
-	if err != nil {
-		// TODO(yifan) log.
-		return false, err
-	}
-	conn, err := net.DialTCP(ag.cfg.Net, nil, addr)
-	if err != nil {
-		// TODO(yifan) log.
-		return false, err
-	}
-	node.Conn = conn
-
 	msg := &message.Neighbor{
 		Id:       proto.Uint64(ag.id),
 		Addr:     proto.String(ag.cfg.AddrStr),
@@ -147,40 +78,34 @@ func (ag *agent) neighbor(node *node.Node, priority message.Neighbor_Priority) (
 	}
 	if err := ag.codec.WriteMsg(msg, node.Conn); err != nil {
 		// TODO(yifan) log.
-		node.Conn.Close()
 		return false, err
 	}
 	recvMsg, err := ag.codec.ReadMsg(node.Conn)
 	if err != nil {
 		// TODO(yifan) log.
-		node.Conn.Close()
 		return false, err
 	}
 	reply, ok := recvMsg.(*message.NeighborReply)
 	if !ok {
-		node.Conn.Close()
 		return false, ErrInvalidMessageType
 	}
 
-	accepted := reply.GetAccept()
+	return reply.GetAccept(), nil
+}
 
-	ag.aView.Lock()
-	ag.pView.Lock()
-	if accepted {
-		ag.addNodeActiveView(node)
-		go ag.serveConn(node.Conn, node)
-	} else {
-		ag.addNodePassiveView(node)
+// replyNeighbor() sends a the NeighborReply message to the node.
+func (ag *agent) replyNeighbor(node *node.Node, accept bool) error {
+	msg := &message.NeighborReply{
+		Id:     proto.Uint64(ag.id),
+		Accept: proto.Bool(accept),
 	}
-	ag.aView.Unlock()
-	ag.pView.Unlock()
-
-	return accepted, nil
+	return ag.codec.WriteMsg(msg, node.Conn)
 }
 
 // userMessage() sends a user message to the node.
 func (ag *agent) userMessage(node *node.Node, msg proto.Message) {
 	if err := ag.codec.WriteMsg(msg, node.Conn); err != nil {
+		log.Errorf("Agent.userMessage(): Write msg error: %v", err)
 		// Record this message, so we can resend it later.
 		umsg := msg.(*message.UserMessage)
 		hash := hashMessage(umsg.GetPayload())
@@ -202,15 +127,12 @@ func (ag *agent) forwardShuffle(node *node.Node, msg *message.Shuffle) {
 
 func (ag *agent) shuffleReply(msg *message.Shuffle, candidates []*message.Candidate) error {
 	// TODO use existing tcp.
-	addr, err := net.ResolveTCPAddr(ag.cfg.Net, msg.GetAddr())
+	conn, err := ag.connect(msg.GetAddr())
 	if err != nil {
-		// TODO(yifan) log
+		log.Errorf("Agent.shuffleReply(): Failed to connect %s: %v", msg.GetAddr(), err)
 		return err
 	}
-	conn, err := net.DialTCP(ag.cfg.Net, nil, addr)
-	if err != nil {
-		return err
-	}
+	defer conn.Close()
 	reply := &message.ShuffleReply{
 		Id:         proto.Uint64(ag.id),
 		Candidates: candidates,
@@ -219,7 +141,6 @@ func (ag *agent) shuffleReply(msg *message.Shuffle, candidates []*message.Candid
 		// TODO log
 		return err
 	}
-	conn.Close()
 	return nil
 }
 

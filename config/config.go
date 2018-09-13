@@ -68,13 +68,13 @@ func ParseConfig() (*Config, error) {
 
 	flag.IntVar(&cfg.AViewMinSize, "min-aview-size", 3, "The minimum size of the active view")
 	flag.IntVar(&cfg.AViewMaxSize, "max-aview-size", 5, "The maximum size of the active view")
-	flag.IntVar(&cfg.PViewSize, "pview-size", 5, "The size of the passive view")
+	flag.IntVar(&cfg.PViewSize, "pview-size", 30, "The size of the passive view")
 
 	flag.IntVar(&cfg.Ka, "ka", 1, "The number of active nodes to shuffle")
 	flag.IntVar(&cfg.Kp, "kp", 3, "The number of passive nodes to shuffle")
 
 	flag.IntVar(&cfg.ARWL, "arwl", 5, "The active random walk length")
-	flag.IntVar(&cfg.PRWL, "prwl", 5, "The passive random walk length")
+	flag.IntVar(&cfg.PRWL, "prwl", 3, "The passive random walk length")
 	flag.IntVar(&cfg.SRWL, "srwl", 5, "The shuffle random walk length")
 
 	flag.IntVar(&cfg.MLife, "msg-life", 5000, "The default message life (milliseconds)")

@@ -5,6 +5,10 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"runtime"
+	"strconv"
+
+	"github.com/huandu/goroutine"
 )
 
 const (
@@ -15,6 +19,7 @@ const (
 )
 
 var verbose int
+var pid = os.Getpid()
 
 func init() {
 	flag.IntVar(&verbose, "v", verboseDebug, "The log veboseness")
@@ -57,5 +62,11 @@ func Debugf(format string, args ...interface{}) {
 }
 
 func Printf(level string, format string, args ...interface{}) {
-	log.Printf("[%s]: %s", level, fmt.Sprintf(format, args...))
+	var code string
+	// source code, function and line num
+	pc, _, line, ok := runtime.Caller(2)
+	if ok {
+		code = runtime.FuncForPC(pc).Name() + ":" + strconv.Itoa(line)
+	}
+	log.Printf("[%s] #%d.%d %s %s", level, pid, goroutine.GoroutineId(), code, fmt.Sprintf(format, args...))
 }

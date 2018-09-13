@@ -128,37 +128,59 @@ func (ag *agent) serve() {
 			continue
 		}
 		// TODO(Yifan): Set read time ount.
-		go ag.serveConn(conn, nil)
+		go ag.serveConn(conn)
 	}
 }
 
 // serveConn() serves a connection.
-func (ag *agent) serveConn(conn *net.TCPConn, node *node.Node) {
+func (ag *agent) serveConn(conn *net.TCPConn) {
 	for {
 		msg, err := ag.codec.ReadMsg(conn)
 		if err != nil {
 			log.Errorf("Agent.serveConn(): Failed to decode message: %v\n", err)
-			ag.replaceActiveNode(node)
 			return
 		}
 		// Dispatch messages.
 		switch t := msg.(type) {
 		case *message.Join:
-			ag.handleJoin(conn, msg.(*message.Join))
+			if ag.handleJoin(conn, msg.(*message.Join)) {
+				return
+			}
 		case *message.Neighbor:
-			ag.handleNeighbor(conn, msg.(*message.Neighbor))
+			if ag.handleNeighbor(conn, msg.(*message.Neighbor)) {
+				return
+			}
+		case *message.ShuffleReply:
+			ag.handleShuffleReply(msg.(*message.ShuffleReply))
+		default:
+			log.Errorf("Agent.serveConn(): Unexpected message type: %T\n", t)
+			return
+		}
+	}
+}
+
+// serveNode() serves a node's connection.
+func (ag *agent) serveNode(node *node.Node) {
+	for {
+		msg, err := ag.codec.ReadMsg(node.Conn)
+		if err != nil {
+			log.Errorf("Agent.serveNode(): Failed to decode message: %v\n", err)
+			ag.replaceActiveNode(node)
+			return
+		}
+		// Dispatch messages.
+		switch t := msg.(type) {
 		case *message.ForwardJoin:
 			ag.handleForwardJoin(msg.(*message.ForwardJoin))
 		case *message.Disconnect:
-			ag.handleDisconnect(msg.(*message.Disconnect))
+			ag.replaceActiveNode(node)
+			return
 		case *message.Shuffle:
 			ag.handleShuffle(msg.(*message.Shuffle))
-		case *message.ShuffleReply:
-			ag.handleShuffleReply(msg.(*message.ShuffleReply))
 		case *message.UserMessage:
-			ag.handleUserMessage(msg.(*message.UserMessage))
+			ag.handleUserMessage(node, msg.(*message.UserMessage))
 		default:
-			log.Errorf("Agent.serveConn(): Unexpected message type: %T\n", t)
+			log.Errorf("Agent.serveNode(): Unexpected message type: %T\n", t)
 			ag.replaceActiveNode(node)
 			return
 		}
@@ -166,20 +188,28 @@ func (ag *agent) serveConn(conn *net.TCPConn, node *node.Node) {
 }
 
 func (ag *agent) healLoop() {
-	tick := time.Tick(time.Duration(ag.cfg.HealDuration) * time.Second)
-	for {
-		select {
-		case <-tick:
-			ag.aView.Lock()
-			ag.pView.Lock()
-			if ag.aView.Len() < ag.cfg.AViewMinSize {
-				if ag.pView.Len() > 0 {
-					nd := chooseRandomNode(ag.pView, 0)
-					ag.neighbor(nd, message.Neighbor_Low)
-				}
+	ticker := time.NewTicker(time.Duration(ag.cfg.HealDuration) * time.Second)
+	defer ticker.Stop()
+	for t := range ticker.C {
+		// ag.aView.Lock()
+		// ag.pView.Lock()
+		// if ag.aView.Len() < ag.cfg.AViewMinSize {
+		// 	if ag.pView.Len() > 0 {
+		// 		nd := chooseRandomNode(ag.pView, 0)
+		// 		ag.neighbor(nd, message.Neighbor_Low)
+		// 	}
+		// }
+		// ag.aView.Unlock()
+		// ag.pView.Unlock()
+
+		ag.aView.RLock()
+		len := ag.aView.Len()
+		ag.aView.RUnlock()
+		if len == 0 {
+			log.Warningf("Lost all peers! Join again\n")
+			if err := ag.Join(ag.cfg.ShufflePeers()...); err != nil {
+				log.Warningf("No available peers, need a new list!")
 			}
-			ag.aView.Unlock()
-			ag.pView.Unlock()
 		}
 	}
 }
@@ -226,105 +256,89 @@ func (ag *agent) makeShuffleList() []*message.Candidate {
 // If the passive view is also full, it will drop a random node
 // in the passive view.
 func (ag *agent) addNodeActiveView(node *node.Node) {
-	if node.Id == ag.id {
-		return
+	if !ag.aView.Has(node.Id) {
+		for ag.aView.Len() >= ag.cfg.AViewMaxSize {
+			n := chooseRandomNode(ag.aView, 0)
+			ag.aView.Remove(n.Id)
+			go ag.disconnect(n)
+			ag.addNodePassiveView(n)
+			//ag.pView.Add(n.Id, n)
+		}
 	}
-	if ag.aView.Has(node.Id) {
-		return
+	go ag.serveNode(node)
+	if old := ag.aView.Add(node.Id, node); old != nil {
+		old.(*node.Node).Conn.Close()
 	}
-	if ag.aView.Len() == ag.cfg.AViewMaxSize {
-		n := chooseRandomNode(ag.aView, 0)
-		go ag.disconnect(n)
-		ag.aView.Remove(n.Id)
-		ag.addNodePassiveView(n)
-	}
-	ag.aView.Append(node.Id, node)
 }
 
 // addNodePassiveView() adds a node to the passive view. If
 // the passive view is full, it will drop a random node.
 func (ag *agent) addNodePassiveView(node *node.Node) {
-	if node.Id == ag.id {
+	if node.Id == ag.id || ag.aView.Has(node.Id) || ag.pView.Has(node.Id) {
 		return
 	}
-	if ag.aView.Has(node.Id) {
-		return
-	}
-	if ag.pView.Has(node.Id) {
-		return
-	}
-	if ag.pView.Len() == ag.cfg.PViewSize {
+	for ag.pView.Len() >= ag.cfg.PViewSize {
 		n := chooseRandomNode(ag.pView, 0)
 		ag.pView.Remove(n.Id)
 	}
-	ag.pView.Append(node.Id, node)
+	ag.pView.Add(node.Id, node)
 }
 
 // replaceActiveNode() replaces a "dead" node in the active
 // view with a node randomly chosen from the passive view.
 func (ag *agent) replaceActiveNode(node *node.Node) {
-	if node == nil {
-		/* The listening socket. */
-		return
-	}
-	ag.aView.Lock()
-	ag.pView.Lock()
-	defer ag.aView.Unlock()
-	defer ag.pView.Unlock()
-
-	if !ag.aView.Has(node.Id) {
-		/* It's voluntarily disconnected. */
-		return
-	}
-
 	// TODO add the node to passive view instead of removing.
-	ag.aView.Remove(node.Id)
+	ag.aView.Lock()
+	if !ag.aView.Remove(node.Id) {
+		ag.aView.Unlock()
+		return
+	}
+	ag.aView.Unlock()
 	node.Conn.Close()
 
-	nd := chooseRandomNode(ag.pView, 0)
-	if nd == nil {
-		log.Warningf("No nodes in passive view\n")
-		if ag.aView.Len() > 0 {
-			// TODO aggressively shuffle.
-			return
-		}
-		log.Warningf("Lost all peers! Join again\n")
-
-		ag.aView.Unlock()
-		ag.pView.Unlock()
-		err := ag.Join(ag.cfg.ShufflePeers()...)
-		ag.aView.Lock()
-		ag.pView.Lock()
-
-		if err != nil {
-			log.Warningf("No available peers, need a new list!")
-			return
-		}
-		return
-	}
-	ag.pView.Remove(nd.Id)
-	ag.neighbor(nd, message.Neighbor_Low)
-	// We need at least one active node.
-	for ag.aView.Len() == 0 {
-		nd = chooseRandomNode(ag.pView, 0)
+	ag.pView.RLock()
+	for {
+		nd := chooseRandomNode(ag.pView, 0)
+		ag.pView.RUnlock()
 		if nd == nil {
-			log.Warningf("Lost all peers! Join again\n")
+			log.Warningf("No nodes in passive view\n")
+			break
+		}
 
-			ag.aView.Unlock()
+		if conn, err := ag.connect(nd.Addr); err != nil {
+			log.Errorf("Agent.replaceActiveNode(): Failed to connect %s: %v, drop from passive view.", nd.Addr(), err)
+			ag.pView.Lock()
+			ag.pView.Remove(nd.Id)
 			ag.pView.Unlock()
-			err := ag.Join(ag.cfg.ShufflePeers()...)
+			continue
+		} else {
+			nd.Conn = conn
+		}
+
+		priority := message.Neighbor_Low
+		if ag.aView.Len() == 0 {
+			message.Neighbor_High
+		}
+		if accepted, err := ag.neighbor(nd, priority); err != nil {
+			log.Errorf("Agent.replaceActiveNode(): Failed to neighbor: %v\n", err)
+			nd.Conn.Close()
+		} else if accpeted {
 			ag.aView.Lock()
 			ag.pView.Lock()
-
-			if err != nil {
-				log.Warningf("No available peers, need a new list!")
-				return
-			}
-			return
+			ag.pView.Remove(nd.Id)
+			ag.addNodeActiveView(nd)
+			ag.aView.Unlock()
+			ag.pView.Unlock()
+			break
 		}
-		ag.pView.Remove(nd.Id)
-		ag.neighbor(nd, message.Neighbor_High)
 	}
+
+	ag.aView.RLock()
+	ag.pView.Lock()
+	ag.addNodePassiveView(node)
+	ag.pView.Unlock()
+	ag.aView.RunLock()
+
 	ag.resendFailedMessages()
 }
 
@@ -354,7 +368,7 @@ func (ag *agent) resendFailedMessages() {
 // handleJoin() handles Join message. If it accepts the request, it will add
 // the node in the active view. As specified by the protocol, a node should
 // always accept Join requests.
-func (ag *agent) handleJoin(conn *net.TCPConn, msg *message.Join) {
+func (ag *agent) handleJoin(conn *net.TCPConn, msg *message.Join) (accept bool) {
 	newNode := &node.Node{
 		Id:   msg.GetId(),
 		Addr: msg.GetAddr(),
@@ -366,30 +380,33 @@ func (ag *agent) handleJoin(conn *net.TCPConn, msg *message.Join) {
 	defer ag.aView.Unlock()
 	defer ag.pView.Unlock()
 
-	if newNode.Id != ag.id {
+	accept = newNode.Id != ag.id && !ag.aView.Has(newNode.Id)
+
+	if err := ag.replyJoin(newNode, accept); err != nil {
+		log.Errorf("Agent.handleJoin(): Failed to reply join: %v", err)
+		node.Conn.Close()
+		return false
+	}
+
+	if accept {
 		ag.addNodeActiveView(newNode)
-		go ag.serveConn(newNode.Conn, newNode)
-		go ag.acceptJoin(newNode)
 
-	} else {
-		go ag.rejectJoin(newNode)
-	}
-
-	// Send ForwardJoin message to all other the nodes in the active view.
-	for _, v := range ag.aView.Values() {
-		nd := v.(*node.Node)
-		if nd == newNode {
-			continue
+		// Send ForwardJoin message to all other the nodes in the active view.
+		for _, v := range ag.aView.Values() {
+			nd := v.(*node.Node)
+			if nd != newNode {
+				go ag.forwardJoin(nd, newNode, uint32(rand.Intn(ag.cfg.ARWL)))
+			}
 		}
-		go ag.forwardJoin(nd, newNode, uint32(rand.Intn(ag.cfg.ARWL)))
 	}
+	return
 }
 
 // handleNeighbor() handles Neighbor message. If the request is high priority,
 // the receiver will always accept the request and add the node to its active view.
 // If the request is low priority, then the request will only be accepted when
 // there are empty slot in the active view.
-func (ag *agent) handleNeighbor(conn *net.TCPConn, msg *message.Neighbor) {
+func (ag *agent) handleNeighbor(conn *net.TCPConn, msg *message.Neighbor) (accept bool) {
 	newNode := &node.Node{
 		Id:   msg.GetId(),
 		Addr: msg.GetAddr(),
@@ -401,16 +418,16 @@ func (ag *agent) handleNeighbor(conn *net.TCPConn, msg *message.Neighbor) {
 	defer ag.aView.Unlock()
 	defer ag.pView.Unlock()
 
-	if ag.aView.Len() == ag.cfg.AViewMaxSize {
-		if msg.GetPriority() == message.Neighbor_Low {
-			go ag.rejectNeighbor(newNode)
-			// TODO(yifan): Add the node to passive view.
-			return
-		}
+	accept = newNode.Id != ag.id && !ag.aView.Has(newNode.Id) && (msg.GetPriority() == message.Neighbor_High || ag.aView.Len() < ag.cfg.AViewMaxSize)
+
+	if err := ag.replyNeighbor(newNode, accept); err != nil {
+		log.Errorf("Agent.handleNeighbor(): Failed to reply neighbor: %v", err)
+		node.Conn.Close()
+		return false
 	}
-	ag.addNodeActiveView(newNode)
-	go ag.serveConn(newNode.Conn, newNode)
-	go ag.acceptNeighbor(newNode)
+	if accept {
+		ag.addNodeActiveView(newNode)
+	}
 	return
 }
 
@@ -430,31 +447,23 @@ func (ag *agent) handleForwardJoin(msg *message.ForwardJoin) {
 
 	if ttl == 0 || ag.aView.Len() <= 1 { // TODO(yifan): Loose this?
 		if ag.id != newNode.Id && !ag.aView.Has(newNode.Id) {
-			ag.neighbor(newNode, message.Neighbor_High)
+			if conn, err := ag.connect(newNode.Addr); err != nil {
+				log.Errorf("Agent.handleForwardJoin(): Failed to connect %s: %v.", newNode.Addr(), err)
+			} else {
+				newNode.Conn = conn
+				if _, err = ag.neighbor(newNode, message.Neighbor_High); err != nil {
+					log.Errorf("Agent.handleForwardJoin(): Failed to neighbor: %v", err)
+				}
+			}
 		}
 		return
 	}
 	if ttl == uint32(ag.cfg.PRWL) {
 		ag.addNodePassiveView(newNode)
 	}
-	node := chooseRandomNode(ag.aView, msg.GetId())
-	go ag.forwardJoin(node, newNode, ttl-1)
-	return
-}
-
-// handleDisconnect() handles Disconnect message. It will replace the node
-// with another node from the passive view. And send Neighbor message to it.
-func (ag *agent) handleDisconnect(msg *message.Disconnect) {
-	id := msg.GetId()
-
-	ag.aView.RLock()
-	if !ag.aView.Has(id) {
-		ag.aView.RUnlock()
-		return
+	if node := chooseRandomNode(ag.aView, msg.GetId()); node != nil {
+		go ag.forwardJoin(node, newNode, ttl-1)
 	}
-	nd := ag.aView.GetValueOf(id).(*node.Node)
-	ag.aView.RUnlock()
-	ag.replaceActiveNode(nd)
 	return
 }
 
@@ -467,24 +476,36 @@ func (ag *agent) handleShuffle(msg *message.Shuffle) {
 	defer ag.pView.Unlock()
 
 	ttl := msg.GetTtl()
-	if ttl > 0 && ag.pView.Len() > 1 {
+	if ttl > 0 && ag.aView.Len() > 1 {
 		node := chooseRandomNode(ag.aView, msg.GetId())
-		if node != nil {
-			msg.Ttl = proto.Uint32(ttl - 1)
-			go ag.forwardShuffle(node, msg)
-		}
+		msg.Ttl = proto.Uint32(ttl - 1)
+		go ag.forwardShuffle(node, msg)
 		return
 	}
+
 	candidates := msg.GetCandidates()
-	replyCandidates := chooseRandomCandidates(ag.aView, ag.cfg.Ka)
-	replyCandidates = append(replyCandidates, chooseRandomCandidates(ag.pView, ag.cfg.Kp)...)
+	replyCandidates := chooseRandomCandidates(ag.pView, len(candidates))
 	go ag.shuffleReply(msg, replyCandidates)
+	i := 0
 	for _, candidate := range candidates {
 		node := &node.Node{
 			Id:   candidate.GetId(),
 			Addr: candidate.GetAddr(),
 		}
-		ag.addNodePassiveView(node)
+		//ag.addNodePassiveView(node)
+		if node.Id == ag.id || ag.aView.Has(node.Id) || ag.pView.Has(node.Id) {
+			continue
+		}
+		for ag.pView.Len() >= ag.cfg.PViewSize {
+			if i < len(replyCandidates) {
+				ag.pView.Remove(replyCandidates[i].GetId())
+				i++
+			} else {
+				n := chooseRandomNode(ag.pView, 0)
+				ag.pView.Remove(n.Id)
+			}
+		}
+		ag.pView.Add(node.Id, node)
 	}
 	return
 }
@@ -509,7 +530,7 @@ func (ag *agent) handleShuffleReply(msg *message.ShuffleReply) {
 
 // handleUserMessage() handles user defined messages. It will forward the message
 // to the nodes in its active view.
-func (ag *agent) handleUserMessage(msg *message.UserMessage) {
+func (ag *agent) handleUserMessage(from *node.Node, msg *message.UserMessage) {
 	// Test if the message is stale.
 	deadline := msg.GetTs() + time.Millisecond.Nanoseconds()*int64(ag.cfg.MLife)
 	now := time.Now().UnixNano()
@@ -544,9 +565,25 @@ func (ag *agent) handleUserMessage(msg *message.UserMessage) {
 
 	for _, v := range ag.aView.Values() {
 		nd := v.(*node.Node)
-		go ag.userMessage(nd, msg)
+		if nd.Id != from.Id {
+			go ag.userMessage(nd, msg)
+		}
 	}
 	return
+}
+
+func (ag *agent) connect(peerAddr string) (*net.TCPConn, error) {
+	addr, err := net.ResolveTCPAddr(ag.cfg.Net, peerAddr)
+	if err != nil {
+		// TODO(yifan) log.
+		return nil, err
+	}
+	conn, err := net.DialTCP(ag.cfg.Net, nil, addr)
+	if err != nil {
+		// TODO(yifan) log.
+		return nil, err
+	}
+	return conn, nil
 }
 
 // Join joins the node to the cluster by contacting the nodes provied in the
@@ -556,27 +593,26 @@ func (ag *agent) Join(peerAddrs ...string) error {
 	ag.cfg.Peers = append(ag.cfg.Peers, peerAddrs...)
 
 	for _, peerAddr := range peerAddrs {
-		tcpAddr, err := net.ResolveTCPAddr(ag.cfg.Net, peerAddr)
-		if err != nil {
-			log.Errorf("Agent.Join(): Failed to ResolveTCPAddr: %v\n", err)
-			continue
-		}
-		node := &node.Node{Addr: peerAddr}
-
 		log.Infof("Agent.Join(): Trying to join %s...\n", peerAddr)
-		conn, err := net.DialTCP(ag.cfg.Net, nil, tcpAddr)
+
+		conn, err := ag.connect(peerAddr)
 		if err != nil {
-			log.Errorf("Agent.Join(): Failed to dial %s: %v\n", peerAddr, err)
-			continue
+			log.Errorf("Agent.Join(): Failed to connect %s: %v\n", peerAddr, err)
 		}
-		node.Conn = conn
-		accepted, err := ag.join(node)
-		if !accepted || err != nil {
+		node := &node.Node{Addr: peerAddr, Conn: conn}
+
+		if accepted, err := ag.join(node); err != nil || !accepted {
 			log.Errorf("Agent.Join(): Failed to join: accepted:%v, err:%v\n", accepted, err)
+			node.Conn.Close()
 			continue
 		}
 		// Successfully Joined.
 		log.Infof("Successfully join node %s\n", peerAddr)
+		ag.aView.Lock()
+		ag.pView.Lock()
+		defer ag.aView.Unlock()
+		defer ag.pView.Unlock()
+		ag.addNodeActiveView(node)
 		return nil
 	}
 	return ErrNoAvailablePeers
